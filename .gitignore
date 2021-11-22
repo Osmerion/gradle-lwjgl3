@@ -9,3 +9,8 @@
 /buildSrc/.gradle
 /buildSrc/build
 /buildSrc/out
+
+/samples/*/.gradle
+/samples/*/.idea
+/samples/*/build
+/samples/*/out
