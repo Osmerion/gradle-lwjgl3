@@ -35,6 +35,8 @@ Additionally `tasks` may be used to print a list of all available tasks.
 
 ## License
 
+This plugin is available under the terms of the [3-Clause BSD license](https://spdx.org/licenses/BSD-3-Clause.html).
+
 ```
 Copyright (c) 2021-2023 Leon Linhart,
 All rights reserved.
