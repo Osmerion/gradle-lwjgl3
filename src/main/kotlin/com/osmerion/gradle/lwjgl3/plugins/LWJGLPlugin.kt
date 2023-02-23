@@ -46,13 +46,11 @@ public class LWJGLPlugin : Plugin<Project> {
 //            val config = configurations.create("lwjgl${name.capitalized()}${}")
 
             libConfigurations.all {
-                println("HelloConfig $this")
                 dependencies.addAllLater(provider {
                     val groupName = this@target.group.orElse(lwjgl3.group).get()
                     val version = this@target.version.orElse(lwjgl3.version).get()
 
                     modules.map { lwjglModule ->
-                        println("Hello $lwjglModule")
                         dependencyFactory.create(groupName, lwjglModule.artifactName, version)
                     }
                 })
