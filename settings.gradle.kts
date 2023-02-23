@@ -29,3 +29,5 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 rootProject.name = "lwjgl3-gradle-plugin"
+
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
