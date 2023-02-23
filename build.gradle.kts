@@ -31,8 +31,9 @@
 @Suppress("DSL_SCOPE_VIOLATION") // See https://github.com/gradle/gradle/issues/22797
 plugins {
     `java-gradle-plugin`
-    `kotlin-dsl`
     alias(libs.plugins.binary.compatibility.validator)
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.kotlin.plugin.samwithreceiver)
     id("com.osmerion.maven-publish-conventions")
 }
 
@@ -47,6 +48,15 @@ java {
 
 kotlin {
     explicitApi()
+
+    target {
+        compilations.all {
+            compilerOptions.configure {
+                apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_4)
+                languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_8)
+            }
+        }
+    }
 }
 
 gradlePlugin {
@@ -56,4 +66,8 @@ gradlePlugin {
             implementationClass = "com.osmerion.gradle.lwjgl3.plugins.LWJGLPlugin"
         }
     }
+}
+
+samWithReceiver {
+    annotation("org.gradle.api.HasImplicitReceiver")
 }
