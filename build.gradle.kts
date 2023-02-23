@@ -78,6 +78,28 @@ tasks {
     }
 }
 
+val emptyJar = tasks.create<Jar>("emptyJar") {
+    destinationDirectory.set(buildDir.resolve("emptyJar"))
+    archiveBaseName.set("com.osmerion.lwjgl3.gradle.plugin")
+}
+
+publishing {
+    publications.withType<MavenPublication>().configureEach {
+        if (name == "lwjglPluginMarkerMaven") {
+            artifact(emptyJar)
+            artifact(emptyJar) { classifier = "javadoc" }
+            artifact(emptyJar) { classifier = "sources" }
+        }
+
+        pom {
+            name.set("LWJGL3 Gradle Plugin")
+            description.set("A Gradle plugin to simplify working with LWJGL3") // TODO come up with a better desc
+
+            packaging = "jar"
+        }
+    }
+}
+
 dependencies {
     testImplementation(platform(libs.junit.bom))
 
