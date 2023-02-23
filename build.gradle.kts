@@ -36,6 +36,15 @@ plugins {
     id("com.osmerion.maven-publish-conventions")
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+
+    withJavadocJar()
+    withSourcesJar()
+}
+
 kotlin {
     explicitApi()
 }
