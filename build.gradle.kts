@@ -44,7 +44,7 @@ gradlePlugin {
     plugins {
         create("lwjgl") {
             id = "com.osmerion.lwjgl3"
-            implementationClass = "com.osmerion.lwjgl.plugin.gradle.LWJGLPlugin"
+            implementationClass = "com.osmerion.gradle.lwjgl3.plugins.LWJGLPlugin"
         }
     }
 }
