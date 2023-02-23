@@ -28,18 +28,58 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-pluginManagement {
-    plugins {
-        id("org.gradle.toolchains.foojay-resolver-convention") version("0.4.0")
-    }
-
-    includeBuild("build-logic")
-}
+import com.osmerion.build.*
+import com.osmerion.build.BuildType
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention")
+    signing
+    `maven-publish`
+    id("com.osmerion.base-conventions")
 }
 
-rootProject.name = "lwjgl3-gradle-plugin"
+publishing {
+    repositories {
+        maven {
+            url = uri(deployment.repo)
 
-enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+            credentials {
+                username = deployment.user
+                password = deployment.password
+            }
+        }
+    }
+    publications.withType<MavenPublication>().configureEach {
+        pom {
+            name.set(project.name)
+            url.set("https://github.com/Osmerion/lwjgl3-gradle-plugin")
+
+            licenses {
+                license {
+                    name.set("BSD-3-Clause")
+                    url.set("https://github.com/Osmerion/lwjgl3-gradle-plugin/blob/master/LICENSE")
+                    distribution.set("repo")
+                }
+            }
+
+            developers {
+                developer {
+                    id.set("TheMrMilchmann")
+                    name.set("Leon Linhart")
+                    email.set("themrmilchmann@gmail.com")
+                    url.set("https://github.com/TheMrMilchmann")
+                }
+            }
+
+            scm {
+                connection.set("scm:git:git://github.com/Osmerion/lwjgl3-gradle-plugin.git")
+                developerConnection.set("scm:git:git://github.com/Osmerion/lwjgl3-gradle-plugin.git")
+                url.set("https://github.com/Osmerion/lwjgl3-gradle-plugin.git")
+            }
+        }
+    }
+}
+
+signing {
+    isRequired = (deployment.type === BuildType.RELEASE)
+    sign(publishing.publications)
+}

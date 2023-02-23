@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2023 Leon Linhart,
+ * Copyright (c) 2023 Leon Linhart,
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,18 +28,10 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-pluginManagement {
-    plugins {
-        id("org.gradle.toolchains.foojay-resolver-convention") version("0.4.0")
-    }
-
-    includeBuild("build-logic")
-}
-
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention")
+    `kotlin-dsl`
 }
 
-rootProject.name = "lwjgl3-gradle-plugin"
-
-enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+repositories {
+    mavenCentral()
+}

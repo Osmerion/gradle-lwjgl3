@@ -31,10 +31,8 @@
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
+    id("com.osmerion.maven-publish-conventions")
 }
-
-group = "com.osmerion.lwjgl"
-version = "0.1.0"
 
 kotlin {
     explicitApi()
@@ -47,8 +45,4 @@ gradlePlugin {
             implementationClass = "com.osmerion.lwjgl.plugin.gradle.LWJGLPlugin"
         }
     }
-}
-
-repositories {
-    mavenCentral()
 }

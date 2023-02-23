@@ -28,18 +28,17 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-pluginManagement {
-    plugins {
-        id("org.gradle.toolchains.foojay-resolver-convention") version("0.4.0")
-    }
+import com.osmerion.build.*
+import com.osmerion.build.BuildType
 
-    includeBuild("build-logic")
+group = "com.osmerion.gradle.lwjgl3"
+
+val nextVersion = "0.1.0"
+version = when (deployment.type) {
+    BuildType.SNAPSHOT -> "$nextVersion-SNAPSHOT"
+    else -> nextVersion
 }
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention")
+repositories {
+    mavenCentral()
 }
-
-rootProject.name = "lwjgl3-gradle-plugin"
-
-enableFeaturePreview("STABLE_CONFIGURATION_CACHE")

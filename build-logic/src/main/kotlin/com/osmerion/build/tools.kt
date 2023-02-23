@@ -28,18 +28,37 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-pluginManagement {
-    plugins {
-        id("org.gradle.toolchains.foojay-resolver-convention") version("0.4.0")
-    }
+package com.osmerion.build
 
-    includeBuild("build-logic")
-}
+import org.gradle.api.*
+import org.gradle.api.publish.maven.*
+import org.gradle.kotlin.dsl.*
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention")
-}
+private const val DEPLOYMENT_KEY = "com.osmerion.build.Deployment"
 
-rootProject.name = "lwjgl3-gradle-plugin"
+val Project.deployment: Deployment
+    get() =
+        if (extra.has(DEPLOYMENT_KEY)) {
+            extra[DEPLOYMENT_KEY] as Deployment
+        } else
+            (when {
+                hasProperty("release") -> Deployment(
+                    BuildType.RELEASE,
+                    "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/",
+                    getProperty("osmerionSonatypeUsername"),
+                    getProperty("osmerionSonatypePassword")
+                )
+                hasProperty("snapshot") -> Deployment(
+                    BuildType.SNAPSHOT,
+                    "https://s01.oss.sonatype.org/content/repositories/snapshots/",
+                    getProperty("osmerionSonatypeUsername"),
+                    getProperty("osmerionSonatypePassword")
+                )
+                else -> Deployment(BuildType.LOCAL, repositories.mavenLocal().url.toString())
+            }).also { extra[DEPLOYMENT_KEY] = it }
 
-enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+fun Project.getProperty(k: String): String =
+    if (extra.has(k))
+        extra[k] as String
+    else
+        System.getenv(k) ?: ""
