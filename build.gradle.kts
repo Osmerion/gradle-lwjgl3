@@ -71,3 +71,17 @@ gradlePlugin {
 samWithReceiver {
     annotation("org.gradle.api.HasImplicitReceiver")
 }
+
+tasks {
+    withType<Test>().configureEach {
+        useJUnitPlatform()
+    }
+}
+
+dependencies {
+    testImplementation(platform(libs.junit.bom))
+
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.params)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+}
