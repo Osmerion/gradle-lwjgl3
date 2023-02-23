@@ -1,0 +1,7 @@
+[versions]
+binary-compatibility-validator = "0.13.0"
+
+
+[plugins]
+# org.jetbrains.kotlinx.binary-compatibility-validator - binary-compatibility-validator
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }

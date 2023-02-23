@@ -28,9 +28,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+@Suppress("DSL_SCOPE_VIOLATION") // See https://github.com/gradle/gradle/issues/22797
 plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
+    alias(libs.plugins.binary.compatibility.validator)
     id("com.osmerion.maven-publish-conventions")
 }
 
