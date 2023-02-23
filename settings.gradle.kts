@@ -29,5 +29,3 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 rootProject.name = "lwjgl3-gradle-plugin"
-
-enableFeaturePreview("VERSION_CATALOGS")
