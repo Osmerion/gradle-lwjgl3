@@ -36,7 +36,7 @@ Additionally `tasks` may be used to print a list of all available tasks.
 ## License
 
 ```
-Copyright (c) 2021 Leon Linhart,
+Copyright (c) 2021-2023 Leon Linhart,
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
