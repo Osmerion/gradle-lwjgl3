@@ -28,6 +28,9 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 @Suppress("DSL_SCOPE_VIOLATION") // See https://github.com/gradle/gradle/issues/22797
 plugins {
     `java-gradle-plugin`
@@ -39,7 +42,7 @@ plugins {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(8))
+        languageVersion.set(JavaLanguageVersion.of(19))
     }
 
     withJavadocJar()
@@ -73,6 +76,26 @@ samWithReceiver {
 }
 
 tasks {
+    withType<JavaCompile>().configureEach {
+        options.release.set(8)
+    }
+
+    withType<KotlinCompile>().configureEach {
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
+    }
+
+    javadoc {
+        with(options as StandardJavadocDocletOptions) {
+            tags = listOf(
+                "apiNote:a:API Note:",
+                "implSpec:a:Implementation Requirements:",
+                "implNote:a:Implementation Note:"
+            )
+
+            addStringOption("-release", "11")
+        }
+    }
+
     withType<Test>().configureEach {
         useJUnitPlatform()
     }
