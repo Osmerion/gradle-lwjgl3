@@ -40,6 +40,6 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention")
 }
 
-rootProject.name = "lwjgl3-gradle-plugin"
+rootProject.name = "gradle-lwjgl3"
 
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
