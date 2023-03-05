@@ -2,6 +2,8 @@
 binary-compatibility-validator = "0.13.0"
 junit = "5.9.2"
 kotlin = "1.8.10"
+nokee-gradle-plugin-dev = "1.6.9"
+plugin-publish = "1.1.0"
 
 
 [libraries]
@@ -13,6 +15,12 @@ junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", vers
 
 
 [plugins]
+# com.gradle.plugin-publish - plugin-publish
+plugin-publish = { id = "com.gradle.plugin-publish", version.ref = "plugin-publish" }
+
+# dev.gradleplugins - Nokee Gradle Plugin Development Plugins
+gradle-plugin-functional-test = { id = "dev.gradleplugins.gradle-plugin-functional-test", version.ref = "nokee-gradle-plugin-dev" }
+
 # org.jetbrains.kotlinx.binary-compatibility-validator - binary-compatibility-validator
 binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
 

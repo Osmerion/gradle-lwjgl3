@@ -33,10 +33,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 @Suppress("DSL_SCOPE_VIOLATION") // See https://github.com/gradle/gradle/issues/22797
 plugins {
-    `java-gradle-plugin`
     alias(libs.plugins.binary.compatibility.validator)
+    alias(libs.plugins.gradle.plugin.functional.test)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.plugin.samwithreceiver)
+    alias(libs.plugins.plugin.publish)
     id("com.osmerion.maven-publish-conventions")
 }
 
@@ -63,9 +64,20 @@ kotlin {
 }
 
 gradlePlugin {
+    compatibility {
+        minimumGradleVersion.set("7.4")
+    }
+
+    website.set("https://github.com/Osmerion/gradle-lwjgl3")
+    vcsUrl.set("https://github.com/Osmerion/gradle-lwjgl3.git")
+
     plugins {
         create("lwjgl") {
             id = "com.osmerion.lwjgl3"
+            displayName = "LWJGL3 Gradle Plugin"
+            description = "A Gradle plugin to simplify working with LWJGL3" // TODO come up with a better desc
+            tags.addAll("dependency-management", "lwjgl", "lwjgl3")
+
             implementationClass = "com.osmerion.gradle.lwjgl3.plugins.LWJGLPlugin"
         }
     }
