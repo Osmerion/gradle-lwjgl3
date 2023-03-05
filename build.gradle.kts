@@ -97,18 +97,6 @@ tasks {
         compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
     }
 
-    javadoc {
-        with(options as StandardJavadocDocletOptions) {
-            tags = listOf(
-                "apiNote:a:API Note:",
-                "implSpec:a:Implementation Requirements:",
-                "implNote:a:Implementation Note:"
-            )
-
-            addStringOption("-release", "8")
-        }
-    }
-
     withType<Test>().configureEach {
         useJUnitPlatform()
     }
