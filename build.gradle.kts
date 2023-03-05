@@ -35,6 +35,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.binary.compatibility.validator)
     alias(libs.plugins.gradle.plugin.functional.test)
+    alias(libs.plugins.gradle.toolchain.switches)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.plugin.samwithreceiver)
     alias(libs.plugins.plugin.publish)
