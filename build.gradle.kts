@@ -99,6 +99,9 @@ tasks {
 
     withType<Test>().configureEach {
         useJUnitPlatform()
+
+        systemProperty("junit.jupiter.execution.parallel.enabled", true)
+        systemProperty("junit.jupiter.execution.parallel.mode.default", "concurrent")
     }
 }
 
@@ -125,9 +128,8 @@ publishing {
 }
 
 dependencies {
-    testImplementation(platform(libs.junit.bom))
-
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.params)
-    testRuntimeOnly(libs.junit.jupiter.engine)
+    functionalTestImplementation(platform(libs.junit.bom))
+    functionalTestImplementation(libs.junit.jupiter.api)
+    functionalTestImplementation(libs.junit.jupiter.params)
+    functionalTestRuntimeOnly(libs.junit.jupiter.engine)
 }
