@@ -101,7 +101,7 @@ tasks {
     }
 }
 
-val emptyJar = tasks.create<Jar>("emptyJar") {
+val emptyJar = tasks.register<Jar>("emptyJar") {
     destinationDirectory.set(buildDir.resolve("emptyJar"))
     archiveBaseName.set("com.osmerion.lwjgl3.gradle.plugin")
 }
