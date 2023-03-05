@@ -92,7 +92,7 @@ tasks {
                 "implNote:a:Implementation Note:"
             )
 
-            addStringOption("-release", "11")
+            addStringOption("-release", "8")
         }
     }
 
