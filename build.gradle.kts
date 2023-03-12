@@ -135,6 +135,8 @@ publishing {
 }
 
 dependencies {
+    compileOnlyApi(kotlin("stdlib"))
+
     functionalTestImplementation(platform(libs.junit.bom))
     functionalTestImplementation(libs.junit.jupiter.api)
     functionalTestImplementation(libs.junit.jupiter.params)
