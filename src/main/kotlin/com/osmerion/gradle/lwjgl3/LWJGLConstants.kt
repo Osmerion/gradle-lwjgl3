@@ -30,10 +30,34 @@
  */
 package com.osmerion.gradle.lwjgl3
 
+/**
+ * Constants used by this version of the LWJGL3 Gradle plugin.
+ *
+ * @since   0.1.0
+ */
+/*
+ * We're not actually declaring "const" elements because they are not
+ * necessarily constant across versions of the plugin.
+ */
 @Suppress("MayBeConstant")
 public object LWJGLConstants {
 
+    /**
+     * The default group name of the coordinates for LWJGL artifacts.
+     *
+     * @see LWJGLTarget.group
+     *
+     * @since   0.1.0
+     */
     public val DEFAULT_GROUP_NAME: String = "org.lwjgl"
+
+    /**
+     * The default LWJGL version.
+     *
+     * @see LWJGLTarget.version
+     *
+     * @since   0.1.0
+     */
     public val DEFAULT_VERSION: String = "3.3.1"
 
 }
