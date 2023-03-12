@@ -88,11 +88,9 @@ public class LWJGLPlugin : Plugin<Project> {
 
         pluginManager.withPlugin("org.gradle.java") {
             val mainTarget = lwjgl3.targets.create("main")
-            mainTarget.libConfigurations.add(configurations.getByName(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
-            mainTarget.nativesConfigurations.addAll(listOf(
-                configurations.getByName(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME),
-                configurations.getByName(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME)
-            ))
+            mainTarget.libConfigurations.addLater(configurations.named(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
+            mainTarget.nativesConfigurations.addLater(configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME))
+            mainTarget.nativesConfigurations.addLater(configurations.named(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME))
         }
     }
 
