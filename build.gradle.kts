@@ -65,6 +65,7 @@ kotlin {
 
         compilations.named("main") {
             compilerOptions.configure {
+                @Suppress("DEPRECATION")
                 apiVersion.set(KotlinVersion.KOTLIN_1_4)
             }
         }
