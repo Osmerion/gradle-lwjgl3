@@ -84,7 +84,7 @@ gradlePlugin {
         register("lwjgl") {
             id = "com.osmerion.lwjgl3"
             displayName = "LWJGL3 Gradle Plugin"
-            description = "A Gradle plugin to simplify working with LWJGL3" // TODO come up with a better desc
+            description = "A Gradle plugin to simplify working with LWJGL 3."
             tags.addAll("dependency-management", "lwjgl", "lwjgl3")
 
             implementationClass = "com.osmerion.gradle.lwjgl3.plugins.LWJGLPlugin"
@@ -128,7 +128,7 @@ publishing {
 
         pom {
             name.set("LWJGL3 Gradle Plugin")
-            description.set("A Gradle plugin to simplify working with LWJGL3") // TODO come up with a better desc
+            description.set("A Gradle plugin to simplify working with LWJGL 3.")
 
             packaging = "jar"
         }
