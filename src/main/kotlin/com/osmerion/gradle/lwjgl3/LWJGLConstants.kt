@@ -60,4 +60,14 @@ public object LWJGLConstants {
      */
     public val DEFAULT_VERSION: String = "3.3.1"
 
+    /**
+     * The name of the property that can be used to configure if the plugin
+     * should create an implicit target (in some circumstances).
+     *
+     * The value of the property should either be `true` or `false` if set.
+     *
+     * @since   0.1.0
+     */
+    public val PROPERTY_IMPLICIT_TARGET: String = "com.osmerion.lwjgl3.implicit-target"
+
 }

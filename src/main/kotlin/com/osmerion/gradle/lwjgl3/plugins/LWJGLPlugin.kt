@@ -86,7 +86,7 @@ public class LWJGLPlugin : Plugin<Project> {
             }
         }
 
-        val implicitTarget = providers.gradleProperty("com.osmerion.lwjgl3.implicit-target")
+        val implicitTarget = providers.gradleProperty(LWJGLConstants.PROPERTY_IMPLICIT_TARGET)
 
         pluginManager.withPlugin("org.gradle.java") {
             if (implicitTarget.map(String::toBoolean).orNull != false) {
