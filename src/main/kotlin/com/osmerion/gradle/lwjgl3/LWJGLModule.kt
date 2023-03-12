@@ -36,66 +36,13 @@ public data class LWJGLModule(
 
     public companion object {
 
-        @JvmStatic
-        public val Core: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl"
-        )
+        private val _all: MutableSet<LWJGLModule> = mutableSetOf()
+        internal val all: Set<LWJGLModule> get() = _all.toSet()
 
-        @JvmStatic
-        public val Assimp: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-assimp"
-        )
+    }
 
-        @JvmStatic
-        public val BGFX: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-bgfx"
-        )
-
-        @JvmStatic
-        public val CUDA: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-cuda"
-        )
-
-        @JvmStatic
-        public val EGL: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-egl"
-        )
-
-        @JvmStatic
-        public val FMOD: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-fmod"
-        )
-
-        @JvmStatic
-        public val FreeType: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-freetype"
-        )
-
-        @JvmStatic
-        public val GLFW: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-glfw"
-        )
-
-        @JvmStatic
-        public val OpenAL: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-openal"
-        )
-
-        @JvmStatic
-        public val OpenCL: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-opencl"
-        )
-
-        @JvmStatic
-        public val OpenGL: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-opengl"
-        )
-
-        @JvmStatic
-        public val STB: LWJGLModule = LWJGLModule(
-            artifactName = "lwjgl-stb"
-        )
-
+    init {
+        _all.add(this)
     }
 
 }

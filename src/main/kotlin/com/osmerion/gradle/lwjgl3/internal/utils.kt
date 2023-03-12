@@ -30,6 +30,7 @@
  */
 package com.osmerion.gradle.lwjgl3.internal
 
+import java.util.*
 import kotlin.contracts.*
 
 @OptIn(ExperimentalContracts::class)
@@ -40,3 +41,14 @@ internal inline fun <T> applyTo(receiver: T, block: T.() -> Unit) {
 
     receiver.block()
 }
+
+internal fun CharSequence.capitalized(): String =
+    when {
+        isEmpty() -> ""
+        else -> get(0).let { initial ->
+            when {
+                initial.isLowerCase() -> Character.toUpperCase(initial) + substring(1)
+                else -> toString()
+            }
+        }
+    }

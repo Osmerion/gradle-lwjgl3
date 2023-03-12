@@ -31,17 +31,6 @@
 package com.osmerion.gradle.lwjgl3
 
 public data class NativePlatform(
-    val string: String,
+    val name: String,
     val artifactClassifier: String
-) {
-
-    public companion object {
-
-        public val WindowsARM64: NativePlatform = NativePlatform("win", "natives-windows-arm64")
-
-        public val WindowsX86: NativePlatform = NativePlatform("win", "natives-windows-x86")
-        public val WindowsX86_64: NativePlatform = NativePlatform("win", "natives-windows")
-
-    }
-
-}
+)

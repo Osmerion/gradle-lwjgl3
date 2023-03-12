@@ -32,10 +32,10 @@ package com.osmerion.gradle.lwjgl3.plugins
 
 import com.osmerion.gradle.lwjgl3.LWJGLExtension
 import com.osmerion.gradle.lwjgl3.internal.applyTo
+import com.osmerion.gradle.lwjgl3.internal.capitalized
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
-import org.gradle.configurationcache.extensions.capitalized
 
 public class LWJGLPlugin : Plugin<Project> {
 
@@ -43,7 +43,36 @@ public class LWJGLPlugin : Plugin<Project> {
         val lwjgl3 = extensions.create("lwjgl3", LWJGLExtension::class.java)
 
         lwjgl3.targets.configureEach target@{
-//            val config = configurations.create("lwjgl${name.capitalized()}${}")
+            platforms.all platform@{
+                val platformNativesConfigurationImpl = configurations.register("lwjgl${this@target.name.capitalized()}${name.capitalized()}Impl") {
+                    isCanBeConsumed = false
+                    isCanBeResolved = true
+
+                    dependencies.addAllLater(provider {
+                        val groupName = this@target.group.orElse(lwjgl3.group).get()
+                        val version = this@target.version.orElse(lwjgl3.version).get()
+
+                        modules.map { lwjglModule ->
+                            dependencyFactory.create(groupName, lwjglModule.artifactName, version, this@platform.artifactClassifier, "jar")
+                        }
+                    })
+                }
+
+                val platformNativesConfiguration = configurations.register("lwjgl${this@target.name.capitalized()}${name.capitalized()}") {
+                    isCanBeConsumed = false
+                    isCanBeResolved = true
+                    isTransitive = true
+
+                    dependencies.addLater(platformNativesConfigurationImpl.map {
+                        dependencyFactory.create(it.incoming.artifactView { lenient(true) }.files)
+                    })
+                }
+
+                // TODO only map the target platform
+                nativesConfigurations.all {
+                    extendsFrom(platformNativesConfiguration.get())
+                }
+            }
 
             libConfigurations.all {
                 dependencies.addAllLater(provider {
@@ -57,18 +86,14 @@ public class LWJGLPlugin : Plugin<Project> {
             }
         }
 
-        val mainTarget = lwjgl3.targets.create("main")
-
         pluginManager.withPlugin("org.gradle.java") {
-            mainTarget.libConfigurations.addAll(listOf(configurations.getByName(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME)))
-
-            mainTarget.nativesConfigurations.convention(listOf(
+            val mainTarget = lwjgl3.targets.create("main")
+            mainTarget.libConfigurations.add(configurations.getByName(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
+            mainTarget.nativesConfigurations.addAll(listOf(
                 configurations.getByName(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME),
                 configurations.getByName(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME)
             ))
         }
-
-
     }
 
 }

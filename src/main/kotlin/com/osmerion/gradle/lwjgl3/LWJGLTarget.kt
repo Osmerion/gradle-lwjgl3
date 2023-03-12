@@ -33,7 +33,6 @@ package com.osmerion.gradle.lwjgl3
 import org.gradle.api.DomainObjectSet
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.model.ObjectFactory
-import org.gradle.api.provider.ListProperty
 import org.gradle.api.provider.Property
 import javax.inject.Inject
 
@@ -51,22 +50,47 @@ public abstract class LWJGLTarget @Inject constructor(
     }
 
     public val libConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
-    public val nativesConfigurations: ListProperty<Configuration> = objectFactory.listProperty(Configuration::class.java)
+    public val nativesConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
 
-    public val platforms: ListProperty<NativePlatform> = objectFactory.listProperty(NativePlatform::class.java)
-
-    public fun defaultPlatforms() {
-
-    }
-
-    public val modules: MutableList<LWJGLModule> = mutableListOf()
+    public val modules: MutableSet<LWJGLModule> = mutableSetOf()
 
     public fun useModules(vararg modules: LWJGLModule) {
-
+        this.modules += modules
     }
 
     public fun useModules(modules: Collection<LWJGLModule>) {
         this.modules += modules
+    }
+
+    public val platforms: DomainObjectSet<NativePlatform> = objectFactory.domainObjectSet(NativePlatform::class.java)
+
+    public fun defaultPlatforms() {
+        linuxX64()
+
+        windowsARM64()
+        windowsX86()
+        windowsX86_64()
+    }
+
+    public fun custom(name: String, artifactClassifier: String) {
+        platforms.add(NativePlatform(name, artifactClassifier))
+    }
+
+    public fun linuxX64() {
+
+    }
+
+    public fun windowsARM64(name: String = "WinARM64") {
+        platforms.add(NativePlatform(name, artifactClassifier = "natives-windows-arm64"))
+    }
+
+    public fun windowsX86(name: String = "WinX86") {
+        platforms.add(NativePlatform(name, artifactClassifier = "natives-windows-x86"))
+    }
+
+    @Suppress("FunctionName")
+    public fun windowsX86_64(name: String = "WinX86_64") {
+        platforms.add(NativePlatform(name, artifactClassifier = "natives-windows"))
     }
 
 }

@@ -42,8 +42,6 @@ public open class LWJGLExtension @Inject constructor(
     public val group: Property<String> = objectFactory.property(String::class.java)
     public val version: Property<String> = objectFactory.property(String::class.java)
 
-    public val targets: NamedDomainObjectContainer<LWJGLTarget> = objectFactory.domainObjectContainer(LWJGLTarget::class.java)
-
     init {
         group.finalizeValueOnRead()
         group.convention(LWJGLConstants.DEFAULT_GROUP_NAME)
@@ -51,5 +49,7 @@ public open class LWJGLExtension @Inject constructor(
         version.finalizeValueOnRead()
         version.convention(LWJGLConstants.DEFAULT_VERSION)
     }
+
+    public val targets: NamedDomainObjectContainer<LWJGLTarget> = objectFactory.domainObjectContainer(LWJGLTarget::class.java)
 
 }
