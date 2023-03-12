@@ -49,8 +49,8 @@ public class LWJGLPlugin : Plugin<Project> {
                     isCanBeResolved = true
 
                     dependencies.addAllLater(provider {
-                        val groupName = this@target.group.orElse(lwjgl3.group).get()
-                        val version = this@target.version.orElse(lwjgl3.version).get()
+                        val groupName = this@target.group.get()
+                        val version = this@target.version.get()
 
                         modules.map { lwjglModule ->
                             dependencyFactory.create(groupName, lwjglModule.artifactName, version, this@platform.artifactClassifier, "jar")
@@ -76,8 +76,8 @@ public class LWJGLPlugin : Plugin<Project> {
 
             libConfigurations.all {
                 dependencies.addAllLater(provider {
-                    val groupName = this@target.group.orElse(lwjgl3.group).get()
-                    val version = this@target.version.orElse(lwjgl3.version).get()
+                    val groupName = this@target.group.get()
+                    val version = this@target.version.get()
 
                     modules.map { lwjglModule ->
                         dependencyFactory.create(groupName, lwjglModule.artifactName, version)

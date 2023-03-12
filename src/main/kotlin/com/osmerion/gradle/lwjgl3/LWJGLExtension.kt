@@ -32,23 +32,11 @@ package com.osmerion.gradle.lwjgl3
 
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.model.ObjectFactory
-import org.gradle.api.provider.Property
 import javax.inject.Inject
 
 public open class LWJGLExtension @Inject constructor(
     objectFactory: ObjectFactory
 ) {
-
-    public val group: Property<String> = objectFactory.property(String::class.java)
-    public val version: Property<String> = objectFactory.property(String::class.java)
-
-    init {
-        group.finalizeValueOnRead()
-        group.convention(LWJGLConstants.DEFAULT_GROUP_NAME)
-
-        version.finalizeValueOnRead()
-        version.convention(LWJGLConstants.DEFAULT_VERSION)
-    }
 
     public val targets: NamedDomainObjectContainer<LWJGLTarget> = objectFactory.domainObjectContainer(LWJGLTarget::class.java)
 

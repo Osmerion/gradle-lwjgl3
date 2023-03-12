@@ -41,12 +41,30 @@ public abstract class LWJGLTarget @Inject constructor(
     objectFactory: ObjectFactory
 ) {
 
+    /**
+     * The group name of the GAV coordinates for the LWJGL artifacts.
+     *
+     * Defaults to [LWJGLConstants.DEFAULT_GROUP_NAME].
+     *
+     * @since   0.1.0
+     */
     public val group: Property<String> = objectFactory.property(String::class.java)
+
+    /**
+     * The version of the GAV coordinates for the LWJGL artifacts.
+     *
+     * Defaults to [LWJGLConstants.DEFAULT_VERSION].
+     *
+     * @since   0.1.0
+     */
     public val version: Property<String> = objectFactory.property(String::class.java)
 
     init {
         group.finalizeValueOnRead()
+        group.convention(LWJGLConstants.DEFAULT_GROUP_NAME)
+
         version.finalizeValueOnRead()
+        version.convention(LWJGLConstants.DEFAULT_VERSION)
     }
 
     public val libConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
