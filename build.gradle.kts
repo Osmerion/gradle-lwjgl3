@@ -81,7 +81,7 @@ gradlePlugin {
     vcsUrl.set("https://github.com/Osmerion/gradle-lwjgl3.git")
 
     plugins {
-        create("lwjgl") {
+        register("lwjgl") {
             id = "com.osmerion.lwjgl3"
             displayName = "LWJGL3 Gradle Plugin"
             description = "A Gradle plugin to simplify working with LWJGL3" // TODO come up with a better desc
