@@ -63,7 +63,7 @@ kotlin {
             }
         }
 
-        compilations.named("main").configure {
+        compilations.named("main") {
             compilerOptions.configure {
                 apiVersion.set(KotlinVersion.KOTLIN_1_4)
             }
