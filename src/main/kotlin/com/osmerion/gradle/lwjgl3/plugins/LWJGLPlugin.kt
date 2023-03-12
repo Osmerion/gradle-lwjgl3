@@ -86,11 +86,15 @@ public class LWJGLPlugin : Plugin<Project> {
             }
         }
 
+        val implicitTarget = providers.gradleProperty("com.osmerion.lwjgl3.implicit-target")
+
         pluginManager.withPlugin("org.gradle.java") {
-            val mainTarget = lwjgl3.targets.create("main")
-            mainTarget.libConfigurations.addLater(configurations.named(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
-            mainTarget.nativesConfigurations.addLater(configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME))
-            mainTarget.nativesConfigurations.addLater(configurations.named(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME))
+            if (implicitTarget.map(String::toBoolean).orNull != false) {
+                val mainTarget = lwjgl3.targets.create("main")
+                mainTarget.libConfigurations.addLater(configurations.named(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
+                mainTarget.nativesConfigurations.addLater(configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME))
+                mainTarget.nativesConfigurations.addLater(configurations.named(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME))
+            }
         }
     }
 
