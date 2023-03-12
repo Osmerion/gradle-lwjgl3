@@ -30,167 +30,472 @@
  */
 package com.osmerion.gradle.lwjgl3
 
+/**
+ * Predefined [LWJGLModule] objects.
+ *
+ * @since   0.1.0
+ */
 public object LWJGLModules {
 
+    /**
+     * LWJGL
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val Core: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl"
     )
 
+    /**
+     * LWJGL - Assimp bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val Assimp: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-assimp"
     )
 
+    /**
+     * LWJGL - bgfx bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val BGFX: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-bgfx"
     )
 
+    /**
+     * LWJGL - CUDA bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val CUDA: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-cuda"
     )
 
+    /**
+     * LWJGL - EGL bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val EGL: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-egl"
     )
 
+    /**
+     * LWJGL - FMOD bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val FMOD: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-fmod"
     )
 
+    /**
+     * LWJGL - FreeType bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val FreeType: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-freetype"
     )
 
+    /**
+     * LWJGL - GLFW bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val GLFW: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-glfw"
     )
 
+    /**
+     * LWJGL - HarfBuzz bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val HarfBuzz: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-harfbuzz"
     )
 
+    /**
+     * LWJGL - hwloc bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val HWLOC: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-hwloc"
+    )
+
+    /**
+     * LWJGL - JAWT bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val JAWT: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-jawt"
     )
 
+    /**
+     * LWJGL - jemalloc bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val Jemalloc: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-jemalloc"
     )
 
+    /**
+     * LWJGL - KTX (Khronos Texture) bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val KTX: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-ktx"
     )
 
+    /**
+     * LWJGL - libdivide bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val LibDivide: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-libdivide"
     )
 
+    /**
+     * LWJGL - LLVM/Clang bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val LLVM: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-llvm"
     )
 
+    /**
+     * LWJGL - LMDB bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val LMDB: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-lmdb"
     )
 
+    /**
+     * LWJGL - LZ4 bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val LZ4: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-lz4"
     )
 
-    // TODO meow
+    /**
+     * LWJGL - Meow hash bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val Meow: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-meow"
+    )
 
-    // TODO mashoptimizer
+    /**
+     * LWJGL - meshoptimizer bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val MeshOptimizer: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-meshoptimizer"
+    )
 
+    /**
+     * LWJGL - NanoVG bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val NanoVG: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-nanovg"
     )
 
+    /**
+     * LWJGL - Native File Dialog bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val NativeFileDialog: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-nfd"
     )
 
+    /**
+     * LWJGL - Nuklear bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val Nuklear: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-nuklear"
     )
 
+    /**
+     * LWJGL - ODBC bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val ODBC: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-odbc"
     )
 
+    /**
+     * LWJGL - OpenAL bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val OpenAL: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-openal"
     )
 
+    /**
+     * LWJGL - OpenCL bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val OpenCL: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-opencl"
     )
 
+    /**
+     * LWJGL - OpenGL bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val OpenGL: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-opengl"
     )
 
+    /**
+     * LWJGL - OpenGL ES bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val OpenGLES: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-opengles"
     )
 
+    /**
+     * LWJGL - OpenVR bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val OpenVR: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-openvr"
     )
 
+    /**
+     * LWJGL - OpenXR bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val OpenXR: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-openxr"
     )
 
+    /**
+     * LWJGL - Opus bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val Opus: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-opus"
     )
 
+    /**
+     * LWJGL - OVR bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val OVR: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-ovr"
     )
 
+    /**
+     * LWJGL - par_shapes bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val ParShapes: LWJGLModule = LWJGLModule(
-        artifactName = "lwjgl-parshapes"
+        artifactName = "lwjgl-par"
     )
 
-    // TODO cont...
+    /**
+     * LWJGL - Remotery bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val Remotery: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-remotery"
+    )
 
+    /**
+     * LWJGL - rpmalloc bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val Rpmalloc: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-rpmalloc"
+    )
+
+    /**
+     * LWJGL - Shaderc bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val Shaderc: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-shaderc"
+    )
+
+
+    /**
+     * LWJGL - SPIRV-Cross bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val SPVC: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-spvc"
+    )
+
+    /**
+     * LWJGL - SSE bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val SSE: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-sse"
+    )
+
+    /**
+     * LWJGL - stb bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val STB: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-stb"
     )
 
+    /**
+     * LWJGL - Tiny OpenEXR bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val TinyEXR: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-tinyexr"
+    )
+
+    /**
+     * LWJGL - Tiny File Dialogs bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val TinyFD: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-tinyfd"
+    )
+
+    /**
+     * LWJGL - AMD Tootle bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val Tootle: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-tootle"
+    )
+
+    /**
+     * LWJGL - Vulkan Memory Allocator bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val VMA: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-vma"
+    )
+
+    /**
+     * LWJGL - Vulkan bindings
+     *
+     * @since   0.1.0
+     */
     @JvmStatic
     public val Vulkan: LWJGLModule = LWJGLModule(
         artifactName = "lwjgl-vulkan"
+    )
+
+    /**
+     * LWJGL - xxHash bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val XXHash: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-xxhash"
+    )
+
+    /**
+     * LWJGL - Yoga bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val Yoga: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-yoga"
+    )
+
+    /**
+     * LWJGL - Zstandard bindings
+     *
+     * @since   0.1.0
+     */
+    @JvmStatic
+    public val Zstd: LWJGLModule = LWJGLModule(
+        artifactName = "lwjgl-zstd"
     )
 
 }
