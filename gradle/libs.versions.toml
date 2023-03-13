@@ -21,6 +21,7 @@ plugin-publish = { id = "com.gradle.plugin-publish", version.ref = "plugin-publi
 
 # dev.gradleplugins - Nokee Gradle Plugin Development Plugins
 gradle-plugin-functional-test = { id = "dev.gradleplugins.gradle-plugin-functional-test", version.ref = "nokee-gradle-plugin-dev" }
+gradle-plugin-unit-test = { id = "dev.gradleplugins.gradle-plugin-unit-test", version.ref = "nokee-gradle-plugin-dev" }
 
 # io.github.themrmilchmann.gradle.toolchainswitches:gradle-toolchain-switches - Gradle Toolchain Switches Plugin
 gradle-toolchain-switches = { id = "io.github.themrmilchmann.toolchain-switches", version.ref = "gradle-toolchain-switches" }

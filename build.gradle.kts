@@ -38,6 +38,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     alias(libs.plugins.binary.compatibility.validator)
     alias(libs.plugins.gradle.plugin.functional.test)
+    alias(libs.plugins.gradle.plugin.unit.test)
     alias(libs.plugins.gradle.toolchain.switches)
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.plugin.samwithreceiver)
@@ -144,6 +145,12 @@ publishing {
 
 dependencies {
     compileOnlyApi(kotlin("stdlib"))
+
+    testImplementation(kotlin("stdlib"))
+    testImplementation(platform(libs.junit.bom))
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.params)
+    testRuntimeOnly(libs.junit.jupiter.engine)
 
     functionalTestImplementation(kotlin("stdlib"))
     functionalTestImplementation(platform(libs.junit.bom))
