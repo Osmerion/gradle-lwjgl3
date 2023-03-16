@@ -34,6 +34,7 @@ import org.gradle.api.DomainObjectSet
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.SetProperty
 import javax.inject.Inject
 
 public abstract class LWJGLTarget @Inject constructor(
@@ -59,26 +60,25 @@ public abstract class LWJGLTarget @Inject constructor(
      */
     public val version: Property<String> = objectFactory.property(String::class.java)
 
+    /**
+     * The LWJGL modules to include for this target.
+     *
+     * @since   0.1.0
+     */
+    public val modules: SetProperty<String> = objectFactory.setProperty(String::class.java)
+
     init {
         group.finalizeValueOnRead()
         group.convention(LWJGLConstants.DEFAULT_GROUP_NAME)
 
         version.finalizeValueOnRead()
         version.convention(LWJGLConstants.DEFAULT_VERSION)
+
+        modules.finalizeValueOnRead()
     }
 
     public val libConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
     public val nativesConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
-
-    public val modules: MutableSet<LWJGLModule> = mutableSetOf()
-
-    public fun useModules(vararg modules: LWJGLModule) {
-        this.modules += modules
-    }
-
-    public fun useModules(modules: Collection<LWJGLModule>) {
-        this.modules += modules
-    }
 
     public val platforms: DomainObjectSet<NativePlatform> = objectFactory.domainObjectSet(NativePlatform::class.java)
 

@@ -53,8 +53,8 @@ public class LWJGLPlugin : Plugin<Project> {
                         val groupName = this@target.group.get()
                         val version = this@target.version.get()
 
-                        modules.map { lwjglModule ->
-                            dependencyFactory.create(groupName, lwjglModule.artifactName, version, this@platform.artifactClassifier, "jar")
+                        modules.get().map { lwjglModule ->
+                            dependencyFactory.create(groupName, lwjglModule, version, this@platform.artifactClassifier, "jar")
                         }
                     })
                 }
@@ -80,8 +80,8 @@ public class LWJGLPlugin : Plugin<Project> {
                     val groupName = this@target.group.get()
                     val version = this@target.version.get()
 
-                    modules.map { lwjglModule ->
-                        dependencyFactory.create(groupName, lwjglModule.artifactName, version)
+                    modules.get().map { lwjglModule ->
+                        dependencyFactory.create(groupName, lwjglModule, version)
                     }
                 })
             }
