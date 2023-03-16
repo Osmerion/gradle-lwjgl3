@@ -30,6 +30,7 @@
  */
 package com.osmerion.gradle.lwjgl3.plugins
 
+import com.osmerion.gradle.lwjgl3.LWJGLConstants
 import com.osmerion.gradle.lwjgl3.LWJGLExtension
 import com.osmerion.gradle.lwjgl3.internal.applyTo
 import com.osmerion.gradle.lwjgl3.internal.capitalized
