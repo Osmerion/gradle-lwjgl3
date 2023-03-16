@@ -65,7 +65,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
-    public val modules: SetProperty<String> = objectFactory.setProperty(String::class.java)
+    public val modules: SetProperty<CharSequence> = objectFactory.setProperty(CharSequence::class.java)
 
     init {
         group.finalizeValueOnRead()

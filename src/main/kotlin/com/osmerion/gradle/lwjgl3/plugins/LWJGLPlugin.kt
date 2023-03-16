@@ -59,7 +59,12 @@ public class LWJGLPlugin : Plugin<Project> {
                         val version = this@target.version.get()
 
                         modules.get().map { lwjglModule ->
-                            dependencyFactory.create(groupName, lwjglModule, version, this@platform.artifactClassifier, "jar")
+                            /*
+                             * Kotlin does not guarantee that the string representation returned by
+                             * CharSequence#toString() is equal to the CharSequence.
+                             */
+                            val artifactName = buildString { append(lwjglModule) }
+                            dependencyFactory.create(groupName, artifactName, version, this@platform.artifactClassifier, "jar")
                         }
                     })
                 }
@@ -86,7 +91,12 @@ public class LWJGLPlugin : Plugin<Project> {
                     val version = this@target.version.get()
 
                     modules.get().map { lwjglModule ->
-                        dependencyFactory.create(groupName, lwjglModule, version)
+                        /*
+                         * Kotlin does not guarantee that the string representation returned by
+                         * CharSequence#toString() is equal to the CharSequence.
+                         */
+                        val artifactName = buildString { append(lwjglModule) }
+                        dependencyFactory.create(groupName, artifactName, version)
                     }
                 })
             }

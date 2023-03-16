@@ -37,13 +37,26 @@ package com.osmerion.gradle.lwjgl3
  */
 public object LWJGLModules {
 
+    private val _all: MutableSet<LWJGLModule> = mutableSetOf()
+    internal val all: Set<CharSequence> get() = _all.toSet()
+
+    private data class LWJGLModule(
+        val artifactName: String
+    ) : CharSequence by artifactName {
+
+        init {
+            _all.add(this)
+        }
+
+    }
+
     /**
      * LWJGL
      *
      * @since   0.1.0
      */
     @JvmStatic
-    public val Core: LWJGLModule = LWJGLModule(
+    public val Core: CharSequence = LWJGLModule(
         artifactName = "lwjgl"
     )
 
@@ -53,7 +66,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Assimp: LWJGLModule = LWJGLModule(
+    public val Assimp: CharSequence = LWJGLModule(
         artifactName = "lwjgl-assimp"
     )
 
@@ -63,7 +76,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val BGFX: LWJGLModule = LWJGLModule(
+    public val BGFX: CharSequence = LWJGLModule(
         artifactName = "lwjgl-bgfx"
     )
 
@@ -73,7 +86,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val CUDA: LWJGLModule = LWJGLModule(
+    public val CUDA: CharSequence = LWJGLModule(
         artifactName = "lwjgl-cuda"
     )
 
@@ -83,7 +96,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val EGL: LWJGLModule = LWJGLModule(
+    public val EGL: CharSequence = LWJGLModule(
         artifactName = "lwjgl-egl"
     )
 
@@ -93,7 +106,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val FMOD: LWJGLModule = LWJGLModule(
+    public val FMOD: CharSequence = LWJGLModule(
         artifactName = "lwjgl-fmod"
     )
 
@@ -103,7 +116,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val FreeType: LWJGLModule = LWJGLModule(
+    public val FreeType: CharSequence = LWJGLModule(
         artifactName = "lwjgl-freetype"
     )
 
@@ -113,7 +126,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val GLFW: LWJGLModule = LWJGLModule(
+    public val GLFW: CharSequence = LWJGLModule(
         artifactName = "lwjgl-glfw"
     )
 
@@ -123,7 +136,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val HarfBuzz: LWJGLModule = LWJGLModule(
+    public val HarfBuzz: CharSequence = LWJGLModule(
         artifactName = "lwjgl-harfbuzz"
     )
 
@@ -133,7 +146,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val HWLOC: LWJGLModule = LWJGLModule(
+    public val HWLOC: CharSequence = LWJGLModule(
         artifactName = "lwjgl-hwloc"
     )
 
@@ -143,7 +156,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val JAWT: LWJGLModule = LWJGLModule(
+    public val JAWT: CharSequence = LWJGLModule(
         artifactName = "lwjgl-jawt"
     )
 
@@ -153,7 +166,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Jemalloc: LWJGLModule = LWJGLModule(
+    public val Jemalloc: CharSequence = LWJGLModule(
         artifactName = "lwjgl-jemalloc"
     )
 
@@ -163,7 +176,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val KTX: LWJGLModule = LWJGLModule(
+    public val KTX: CharSequence = LWJGLModule(
         artifactName = "lwjgl-ktx"
     )
 
@@ -173,7 +186,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val LibDivide: LWJGLModule = LWJGLModule(
+    public val LibDivide: CharSequence = LWJGLModule(
         artifactName = "lwjgl-libdivide"
     )
 
@@ -183,7 +196,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val LLVM: LWJGLModule = LWJGLModule(
+    public val LLVM: CharSequence = LWJGLModule(
         artifactName = "lwjgl-llvm"
     )
 
@@ -193,7 +206,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val LMDB: LWJGLModule = LWJGLModule(
+    public val LMDB: CharSequence = LWJGLModule(
         artifactName = "lwjgl-lmdb"
     )
 
@@ -203,7 +216,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val LZ4: LWJGLModule = LWJGLModule(
+    public val LZ4: CharSequence = LWJGLModule(
         artifactName = "lwjgl-lz4"
     )
 
@@ -213,7 +226,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Meow: LWJGLModule = LWJGLModule(
+    public val Meow: CharSequence = LWJGLModule(
         artifactName = "lwjgl-meow"
     )
 
@@ -223,7 +236,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val MeshOptimizer: LWJGLModule = LWJGLModule(
+    public val MeshOptimizer: CharSequence = LWJGLModule(
         artifactName = "lwjgl-meshoptimizer"
     )
 
@@ -233,7 +246,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val NanoVG: LWJGLModule = LWJGLModule(
+    public val NanoVG: CharSequence = LWJGLModule(
         artifactName = "lwjgl-nanovg"
     )
 
@@ -243,7 +256,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val NativeFileDialog: LWJGLModule = LWJGLModule(
+    public val NativeFileDialog: CharSequence = LWJGLModule(
         artifactName = "lwjgl-nfd"
     )
 
@@ -253,7 +266,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Nuklear: LWJGLModule = LWJGLModule(
+    public val Nuklear: CharSequence = LWJGLModule(
         artifactName = "lwjgl-nuklear"
     )
 
@@ -263,7 +276,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val ODBC: LWJGLModule = LWJGLModule(
+    public val ODBC: CharSequence = LWJGLModule(
         artifactName = "lwjgl-odbc"
     )
 
@@ -273,7 +286,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val OpenAL: LWJGLModule = LWJGLModule(
+    public val OpenAL: CharSequence = LWJGLModule(
         artifactName = "lwjgl-openal"
     )
 
@@ -283,7 +296,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val OpenCL: LWJGLModule = LWJGLModule(
+    public val OpenCL: CharSequence = LWJGLModule(
         artifactName = "lwjgl-opencl"
     )
 
@@ -293,7 +306,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val OpenGL: LWJGLModule = LWJGLModule(
+    public val OpenGL: CharSequence = LWJGLModule(
         artifactName = "lwjgl-opengl"
     )
 
@@ -303,7 +316,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val OpenGLES: LWJGLModule = LWJGLModule(
+    public val OpenGLES: CharSequence = LWJGLModule(
         artifactName = "lwjgl-opengles"
     )
 
@@ -313,7 +326,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val OpenVR: LWJGLModule = LWJGLModule(
+    public val OpenVR: CharSequence = LWJGLModule(
         artifactName = "lwjgl-openvr"
     )
 
@@ -323,7 +336,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val OpenXR: LWJGLModule = LWJGLModule(
+    public val OpenXR: CharSequence = LWJGLModule(
         artifactName = "lwjgl-openxr"
     )
 
@@ -333,7 +346,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Opus: LWJGLModule = LWJGLModule(
+    public val Opus: CharSequence = LWJGLModule(
         artifactName = "lwjgl-opus"
     )
 
@@ -343,7 +356,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val OVR: LWJGLModule = LWJGLModule(
+    public val OVR: CharSequence = LWJGLModule(
         artifactName = "lwjgl-ovr"
     )
 
@@ -353,7 +366,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val ParShapes: LWJGLModule = LWJGLModule(
+    public val ParShapes: CharSequence = LWJGLModule(
         artifactName = "lwjgl-par"
     )
 
@@ -363,7 +376,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Remotery: LWJGLModule = LWJGLModule(
+    public val Remotery: CharSequence = LWJGLModule(
         artifactName = "lwjgl-remotery"
     )
 
@@ -373,7 +386,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Rpmalloc: LWJGLModule = LWJGLModule(
+    public val Rpmalloc: CharSequence = LWJGLModule(
         artifactName = "lwjgl-rpmalloc"
     )
 
@@ -383,7 +396,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Shaderc: LWJGLModule = LWJGLModule(
+    public val Shaderc: CharSequence = LWJGLModule(
         artifactName = "lwjgl-shaderc"
     )
 
@@ -394,7 +407,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val SPVC: LWJGLModule = LWJGLModule(
+    public val SPVC: CharSequence = LWJGLModule(
         artifactName = "lwjgl-spvc"
     )
 
@@ -404,7 +417,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val SSE: LWJGLModule = LWJGLModule(
+    public val SSE: CharSequence = LWJGLModule(
         artifactName = "lwjgl-sse"
     )
 
@@ -414,7 +427,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val STB: LWJGLModule = LWJGLModule(
+    public val STB: CharSequence = LWJGLModule(
         artifactName = "lwjgl-stb"
     )
 
@@ -424,7 +437,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val TinyEXR: LWJGLModule = LWJGLModule(
+    public val TinyEXR: CharSequence = LWJGLModule(
         artifactName = "lwjgl-tinyexr"
     )
 
@@ -434,7 +447,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val TinyFD: LWJGLModule = LWJGLModule(
+    public val TinyFD: CharSequence = LWJGLModule(
         artifactName = "lwjgl-tinyfd"
     )
 
@@ -444,7 +457,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Tootle: LWJGLModule = LWJGLModule(
+    public val Tootle: CharSequence = LWJGLModule(
         artifactName = "lwjgl-tootle"
     )
 
@@ -454,7 +467,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val VMA: LWJGLModule = LWJGLModule(
+    public val VMA: CharSequence = LWJGLModule(
         artifactName = "lwjgl-vma"
     )
 
@@ -464,7 +477,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Vulkan: LWJGLModule = LWJGLModule(
+    public val Vulkan: CharSequence = LWJGLModule(
         artifactName = "lwjgl-vulkan"
     )
 
@@ -474,7 +487,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val XXHash: LWJGLModule = LWJGLModule(
+    public val XXHash: CharSequence = LWJGLModule(
         artifactName = "lwjgl-xxhash"
     )
 
@@ -484,7 +497,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Yoga: LWJGLModule = LWJGLModule(
+    public val Yoga: CharSequence = LWJGLModule(
         artifactName = "lwjgl-yoga"
     )
 
@@ -494,7 +507,7 @@ public object LWJGLModules {
      * @since   0.1.0
      */
     @JvmStatic
-    public val Zstd: LWJGLModule = LWJGLModule(
+    public val Zstd: CharSequence = LWJGLModule(
         artifactName = "lwjgl-zstd"
     )
 
