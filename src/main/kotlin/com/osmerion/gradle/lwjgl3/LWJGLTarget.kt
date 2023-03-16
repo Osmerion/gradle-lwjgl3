@@ -30,16 +30,24 @@
  */
 package com.osmerion.gradle.lwjgl3
 
+import org.gradle.api.Action
 import org.gradle.api.DomainObjectSet
+import org.gradle.api.NamedDomainObjectContainer
+import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import org.gradle.api.provider.SetProperty
 import javax.inject.Inject
 
+/**
+ * TODO doc
+ *
+ * @since   0.1.0
+ */
 public abstract class LWJGLTarget @Inject constructor(
     public val name: String,
-    objectFactory: ObjectFactory
+    private val objectFactory: ObjectFactory
 ) {
 
     /**
@@ -80,35 +88,84 @@ public abstract class LWJGLTarget @Inject constructor(
     public val libConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
     public val nativesConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
 
-    public val platforms: DomainObjectSet<NativePlatform> = objectFactory.domainObjectSet(NativePlatform::class.java)
-
-    public fun defaultPlatforms() {
-        linuxX64()
-
-        windowsARM64()
-        windowsX86()
-        windowsX86_64()
+    public val platforms: NamedDomainObjectContainer<NativePlatform> = objectFactory.domainObjectContainer(NativePlatform::class.java) { name ->
+        objectFactory.newInstance(NativePlatform::class.java, name, this@LWJGLTarget.name)
     }
 
-    public fun custom(name: String, artifactClassifier: String) {
-        platforms.add(NativePlatform(name, artifactClassifier))
+    public fun platform(name: String, action: Action<NativePlatform>): NamedDomainObjectProvider<NativePlatform> =
+        platforms.register(name, action)
+
+    public fun linuxARM32(name: String = "LinuxARM32"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-linux-arm32")
+
+        match {
+            os.set(OperatingSystem.Linux)
+            arch.set(Architecture.ARM32)
+        }
     }
 
-    public fun linuxX64() {
+    public fun linuxARM64(name: String = "LinuxARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-linux-arm64")
 
+        match {
+            os.set(OperatingSystem.Linux)
+            arch.set(Architecture.ARM64)
+        }
     }
 
-    public fun windowsARM64(name: String = "WinARM64") {
-        platforms.add(NativePlatform(name, artifactClassifier = "natives-windows-arm64"))
+    public fun linuxX64(name: String = "LinuxX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-linux")
+
+
+        match {
+            os.set(OperatingSystem.Linux)
+            arch.set(Architecture.X86_64)
+        }
     }
 
-    public fun windowsX86(name: String = "WinX86") {
-        platforms.add(NativePlatform(name, artifactClassifier = "natives-windows-x86"))
+    public fun macosARM64(name: String = "MacOsARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-macos-arm64")
+
+        match {
+            os.set(OperatingSystem.MacOS)
+            arch.set(Architecture.ARM64)
+        }
     }
 
-    @Suppress("FunctionName")
-    public fun windowsX86_64(name: String = "WinX86_64") {
-        platforms.add(NativePlatform(name, artifactClassifier = "natives-windows"))
+    public fun macosX64(name: String = "MacOsX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-macos-arm64")
+
+        match {
+            os.set(OperatingSystem.MacOS)
+            arch.set(Architecture.X86_64)
+        }
+    }
+
+    public fun windowsARM64(name: String = "WinARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-windows-arm64")
+
+        match {
+            os.set(OperatingSystem.Windows)
+            arch.set(Architecture.ARM64)
+        }
+    }
+
+    public fun windowsX64(name: String = "WinX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-windows")
+
+        match {
+            os.set(OperatingSystem.Windows)
+            arch.set(Architecture.X86_64)
+        }
+    }
+
+    public fun windowsX86(name: String = "WinX86"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-windows-x86")
+
+        match {
+            os.set(OperatingSystem.Windows)
+            arch.set(Architecture.X86)
+        }
     }
 
 }

@@ -43,6 +43,11 @@ public open class LWJGLExtension @Inject constructor(
     objectFactory: ObjectFactory
 ) {
 
+    /**
+     * TODO doc
+     *
+     * @since   0.1.0
+     */
     public val targets: NamedDomainObjectContainer<LWJGLTarget> = objectFactory.domainObjectContainer(LWJGLTarget::class.java)
 
 }

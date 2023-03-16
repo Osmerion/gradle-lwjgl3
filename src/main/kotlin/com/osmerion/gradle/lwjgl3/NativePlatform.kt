@@ -30,7 +30,47 @@
  */
 package com.osmerion.gradle.lwjgl3
 
-public data class NativePlatform(
-    val name: String,
-    val artifactClassifier: String
-)
+import com.osmerion.gradle.lwjgl3.internal.capitalized
+import org.gradle.api.Action
+import org.gradle.api.NamedDomainObjectProvider
+import org.gradle.api.Project
+import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.dsl.DependencyFactory
+import org.gradle.api.provider.Property
+import javax.inject.Inject
+
+public open class NativePlatform @Inject constructor(
+    public val name: String,
+    targetName: String,
+    project: Project,
+    private val dependencyFactory: DependencyFactory
+) {
+
+    internal val configurationImpl: NamedDomainObjectProvider<Configuration> = project.configurations.register("lwjgl${targetName.capitalized()}${name.capitalized()}Impl") {
+        isCanBeConsumed = false
+        isCanBeResolved = true
+    }
+
+    public val configuration: NamedDomainObjectProvider<Configuration> = project.configurations.register("lwjgl${targetName.capitalized()}${name.capitalized()}") {
+        isCanBeConsumed = false
+        isCanBeResolved = true
+        isTransitive = true
+
+        dependencies.addLater(configurationImpl.map {
+            dependencyFactory.create(it.incoming.artifactView { lenient(true) }.files)
+        })
+    }
+
+    public val artifactClassifier: Property<String> = project.objects.property(String::class.java)
+
+    init {
+        artifactClassifier.finalizeValueOnRead()
+    }
+
+    internal val matcher: PlatformMatcher = project.objects.newInstance(PlatformMatcher::class.java)
+
+    public fun match(action: Action<PlatformMatcher>) {
+        action.execute(matcher)
+    }
+
+}

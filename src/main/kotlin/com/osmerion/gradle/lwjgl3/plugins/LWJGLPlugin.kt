@@ -33,7 +33,6 @@ package com.osmerion.gradle.lwjgl3.plugins
 import com.osmerion.gradle.lwjgl3.LWJGLConstants
 import com.osmerion.gradle.lwjgl3.LWJGLExtension
 import com.osmerion.gradle.lwjgl3.internal.applyTo
-import com.osmerion.gradle.lwjgl3.internal.capitalized
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
@@ -50,10 +49,7 @@ public class LWJGLPlugin : Plugin<Project> {
 
         lwjgl3.targets.all target@{
             platforms.all platform@{
-                val platformNativesConfigurationImpl = configurations.register("lwjgl${this@target.name.capitalized()}${name.capitalized()}Impl") {
-                    isCanBeConsumed = false
-                    isCanBeResolved = true
-
+                configurationImpl.configure {
                     dependencies.addAllLater(provider {
                         val groupName = this@target.group.get()
                         val version = this@target.version.get()
@@ -64,24 +60,23 @@ public class LWJGLPlugin : Plugin<Project> {
                              * CharSequence#toString() is equal to the CharSequence.
                              */
                             val artifactName = buildString { append(lwjglModule) }
-                            dependencyFactory.create(groupName, artifactName, version, this@platform.artifactClassifier, "jar")
+                            val classifier = this@platform.artifactClassifier.get()
+
+                            dependencyFactory.create(groupName, artifactName, version, classifier, "jar")
                         }
                     })
                 }
 
-                val platformNativesConfiguration = configurations.register("lwjgl${this@target.name.capitalized()}${name.capitalized()}") {
-                    isCanBeConsumed = false
-                    isCanBeResolved = true
-                    isTransitive = true
+                println(this@platform.name)
 
-                    dependencies.addLater(platformNativesConfigurationImpl.map {
-                        dependencyFactory.create(it.incoming.artifactView { lenient(true) }.files)
-                    })
-                }
-
-                // TODO only map the target platform
                 nativesConfigurations.all {
-                    extendsFrom(platformNativesConfiguration.get())
+                    dependencies.addLater(provider {
+                        if (this@platform.matcher.matchesCurrent) {
+                            dependencyFactory.create(files(this@platform.configuration))
+                        } else {
+                            null
+                        }
+                    })
                 }
             }
 
