@@ -34,6 +34,11 @@ import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.model.ObjectFactory
 import javax.inject.Inject
 
+/**
+ * The LWJGL project extension.
+ *
+ * @since   0.1.0
+ */
 public open class LWJGLExtension @Inject constructor(
     objectFactory: ObjectFactory
 ) {

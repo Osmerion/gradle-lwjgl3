@@ -38,6 +38,11 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
 
+/**
+ * The LWJGL Gradle Plugin.
+ *
+ * @since   0.1.0
+ */
 public class LWJGLPlugin : Plugin<Project> {
 
     override fun apply(target: Project): Unit = applyTo(target) {
