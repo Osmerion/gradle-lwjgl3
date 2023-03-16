@@ -48,7 +48,7 @@ public class LWJGLPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = applyTo(target) {
         val lwjgl3 = extensions.create("lwjgl3", LWJGLExtension::class.java)
 
-        lwjgl3.targets.configureEach target@{
+        lwjgl3.targets.all target@{
             platforms.all platform@{
                 val platformNativesConfigurationImpl = configurations.register("lwjgl${this@target.name.capitalized()}${name.capitalized()}Impl") {
                     isCanBeConsumed = false
@@ -106,10 +106,11 @@ public class LWJGLPlugin : Plugin<Project> {
 
         pluginManager.withPlugin("org.gradle.java") {
             if (implicitTarget.map(String::toBoolean).orNull != false) {
-                val mainTarget = lwjgl3.targets.create("main")
-                mainTarget.libConfigurations.addLater(configurations.named(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
-                mainTarget.nativesConfigurations.addLater(configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME))
-                mainTarget.nativesConfigurations.addLater(configurations.named(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME))
+                lwjgl3.targets.register("main") {
+                    libConfigurations.addLater(configurations.named(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
+                    nativesConfigurations.addLater(configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME))
+                    nativesConfigurations.addLater(configurations.named(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME))
+                }
             }
         }
     }
