@@ -47,6 +47,7 @@ public class LWJGLPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = applyTo(target) {
         val lwjgl3 = extensions.create("lwjgl3", LWJGLExtension::class.java)
 
+        // TODO Consider restructuring this to be more lazy
         lwjgl3.targets.all target@{
             platforms.all platform@{
                 configurationImpl.configure {
@@ -66,8 +67,6 @@ public class LWJGLPlugin : Plugin<Project> {
                         }
                     })
                 }
-
-                println(this@platform.name)
 
                 nativesConfigurations.all {
                     dependencies.addLater(provider {
