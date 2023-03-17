@@ -47,9 +47,42 @@ public class LWJGLPlugin : Plugin<Project> {
     override fun apply(target: Project): Unit = applyTo(target) {
         val lwjgl3 = extensions.create("lwjgl3", LWJGLExtension::class.java)
 
-        // TODO Consider restructuring this to be more lazy
         lwjgl3.targets.all target@{
-            platforms.all platform@{
+            /*
+             * TODO Investigate if we can somehow get around realizing all
+             *  objects here. Ideally, this would only be triggered when
+             *  the corresponding entry in project.configurations is realized.
+             */
+            libConfigurations.all {
+                dependencies.addAllLater(provider {
+                    val groupName = this@target.group.get()
+                    val version = this@target.version.get()
+
+                    modules.get().map { lwjglModule ->
+                        /*
+                         * Kotlin does not guarantee that the string representation returned by
+                         * CharSequence#toString() is equal to the CharSequence.
+                         */
+                        val artifactName = buildString { append(lwjglModule) }
+                        dependencyFactory.create(groupName, artifactName, version)
+                    }
+                })
+            }
+
+            /* TODO See libConfigurations above */
+            nativesConfigurations.all {
+                platforms.all platform@{
+                    dependencies.addLater(provider {
+                        if (this@platform.matcher.matchesCurrent) {
+                            dependencyFactory.create(files(this@platform.configuration))
+                        } else {
+                            null
+                        }
+                    })
+                }
+            }
+
+            platforms.configureEach platform@{
                 configurationImpl.configure {
                     dependencies.addAllLater(provider {
                         val groupName = this@target.group.get()
@@ -67,32 +100,6 @@ public class LWJGLPlugin : Plugin<Project> {
                         }
                     })
                 }
-
-                nativesConfigurations.all {
-                    dependencies.addLater(provider {
-                        if (this@platform.matcher.matchesCurrent) {
-                            dependencyFactory.create(files(this@platform.configuration))
-                        } else {
-                            null
-                        }
-                    })
-                }
-            }
-
-            libConfigurations.all {
-                dependencies.addAllLater(provider {
-                    val groupName = this@target.group.get()
-                    val version = this@target.version.get()
-
-                    modules.get().map { lwjglModule ->
-                        /*
-                         * Kotlin does not guarantee that the string representation returned by
-                         * CharSequence#toString() is equal to the CharSequence.
-                         */
-                        val artifactName = buildString { append(lwjglModule) }
-                        dependencyFactory.create(groupName, artifactName, version)
-                    }
-                })
             }
         }
 
