@@ -22,7 +22,9 @@ public open class PlatformMatcher @Inject internal constructor(
 
     public val matchesCurrent: Boolean by lazy {
         val osName = System.getProperty("os.name")
-        os.get().matches(osName)
+        val osArch = System.getProperty("os.arch")
+
+        os.get().matches(osName) && arch.get().matches(osArch)
     }
 
 }
