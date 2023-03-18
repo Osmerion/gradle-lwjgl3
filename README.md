@@ -59,7 +59,7 @@ libraries. Modules can be added to a target using the `useModule` and
 ```kotlin
 lwjgl3 {
     targets.named("main") {
-        useModule(LWJGLModules.Core)
+        modules.add(LWJGLModules.Core)
     }
 }
 ```
@@ -76,7 +76,7 @@ for new modules for which no predefined accessors are available yet.
 ```kotlin
 lwjgl3 {
     targets.named("main") {
-        useModule("lwjgl-glfw")
+        modules.add("lwjgl-glfw")
     }
 }
 ```
