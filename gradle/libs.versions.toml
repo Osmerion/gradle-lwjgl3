@@ -4,7 +4,7 @@ gradle-toolchain-switches = "0.3.0"
 junit = "5.9.3"
 kotlin = "1.8.21"
 nokee-gradle-plugin-dev = "1.6.9"
-plugin-publish = "1.1.0"
+plugin-publish = "1.2.0"
 
 
 [libraries]
