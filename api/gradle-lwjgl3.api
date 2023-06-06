@@ -1,0 +1,164 @@
+public abstract class com/osmerion/gradle/lwjgl3/Architecture {
+}
+
+public final class com/osmerion/gradle/lwjgl3/Architecture$ARM32 : com/osmerion/gradle/lwjgl3/Architecture {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$ARM32;
+}
+
+public final class com/osmerion/gradle/lwjgl3/Architecture$ARM64 : com/osmerion/gradle/lwjgl3/Architecture {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$ARM64;
+}
+
+public final class com/osmerion/gradle/lwjgl3/Architecture$Custom : com/osmerion/gradle/lwjgl3/Architecture {
+	public fun <init> (Ljava/util/function/Predicate;)V
+}
+
+public final class com/osmerion/gradle/lwjgl3/Architecture$X86 : com/osmerion/gradle/lwjgl3/Architecture {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$X86;
+}
+
+public final class com/osmerion/gradle/lwjgl3/Architecture$X86_64 : com/osmerion/gradle/lwjgl3/Architecture {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$X86_64;
+}
+
+public final class com/osmerion/gradle/lwjgl3/ArchitectureKt {
+	public static final fun Architecture (Ljava/util/function/Predicate;)Lcom/osmerion/gradle/lwjgl3/Architecture;
+}
+
+public final class com/osmerion/gradle/lwjgl3/LWJGLConstants {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/LWJGLConstants;
+	public final fun getDEFAULT_GROUP_NAME ()Ljava/lang/String;
+	public final fun getDEFAULT_VERSION ()Ljava/lang/String;
+	public final fun getPROPERTY_IMPLICIT_TARGET ()Ljava/lang/String;
+}
+
+public class com/osmerion/gradle/lwjgl3/LWJGLExtension {
+	public fun <init> (Lorg/gradle/api/model/ObjectFactory;)V
+	public final fun getTargets ()Lorg/gradle/api/NamedDomainObjectContainer;
+}
+
+public final class com/osmerion/gradle/lwjgl3/LWJGLModules {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/LWJGLModules;
+	public static final fun getAssimp ()Ljava/lang/CharSequence;
+	public static final fun getBGFX ()Ljava/lang/CharSequence;
+	public static final fun getCUDA ()Ljava/lang/CharSequence;
+	public static final fun getCore ()Ljava/lang/CharSequence;
+	public static final fun getEGL ()Ljava/lang/CharSequence;
+	public static final fun getFMOD ()Ljava/lang/CharSequence;
+	public static final fun getFreeType ()Ljava/lang/CharSequence;
+	public static final fun getGLFW ()Ljava/lang/CharSequence;
+	public static final fun getHWLOC ()Ljava/lang/CharSequence;
+	public static final fun getHarfBuzz ()Ljava/lang/CharSequence;
+	public static final fun getJAWT ()Ljava/lang/CharSequence;
+	public static final fun getJemalloc ()Ljava/lang/CharSequence;
+	public static final fun getKTX ()Ljava/lang/CharSequence;
+	public static final fun getLLVM ()Ljava/lang/CharSequence;
+	public static final fun getLMDB ()Ljava/lang/CharSequence;
+	public static final fun getLZ4 ()Ljava/lang/CharSequence;
+	public static final fun getLibDivide ()Ljava/lang/CharSequence;
+	public static final fun getMeow ()Ljava/lang/CharSequence;
+	public static final fun getMeshOptimizer ()Ljava/lang/CharSequence;
+	public static final fun getNanoVG ()Ljava/lang/CharSequence;
+	public static final fun getNativeFileDialog ()Ljava/lang/CharSequence;
+	public static final fun getNuklear ()Ljava/lang/CharSequence;
+	public static final fun getODBC ()Ljava/lang/CharSequence;
+	public static final fun getOVR ()Ljava/lang/CharSequence;
+	public static final fun getOpenAL ()Ljava/lang/CharSequence;
+	public static final fun getOpenCL ()Ljava/lang/CharSequence;
+	public static final fun getOpenGL ()Ljava/lang/CharSequence;
+	public static final fun getOpenGLES ()Ljava/lang/CharSequence;
+	public static final fun getOpenVR ()Ljava/lang/CharSequence;
+	public static final fun getOpenXR ()Ljava/lang/CharSequence;
+	public static final fun getOpus ()Ljava/lang/CharSequence;
+	public static final fun getParShapes ()Ljava/lang/CharSequence;
+	public static final fun getRemotery ()Ljava/lang/CharSequence;
+	public static final fun getRpmalloc ()Ljava/lang/CharSequence;
+	public static final fun getSPVC ()Ljava/lang/CharSequence;
+	public static final fun getSSE ()Ljava/lang/CharSequence;
+	public static final fun getSTB ()Ljava/lang/CharSequence;
+	public static final fun getShaderc ()Ljava/lang/CharSequence;
+	public static final fun getTinyEXR ()Ljava/lang/CharSequence;
+	public static final fun getTinyFD ()Ljava/lang/CharSequence;
+	public static final fun getTootle ()Ljava/lang/CharSequence;
+	public static final fun getVMA ()Ljava/lang/CharSequence;
+	public static final fun getVulkan ()Ljava/lang/CharSequence;
+	public static final fun getXXHash ()Ljava/lang/CharSequence;
+	public static final fun getYoga ()Ljava/lang/CharSequence;
+	public static final fun getZstd ()Ljava/lang/CharSequence;
+}
+
+public abstract class com/osmerion/gradle/lwjgl3/LWJGLTarget {
+	public fun <init> (Ljava/lang/String;Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/artifacts/ConfigurationContainer;)V
+	public final fun getGroup ()Lorg/gradle/api/provider/Property;
+	public final fun getLibConfiguration ()Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun getModules ()Lorg/gradle/api/provider/SetProperty;
+	public final fun getName ()Ljava/lang/String;
+	public final fun getNativesConfiguration ()Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun getPlatforms ()Lorg/gradle/api/NamedDomainObjectContainer;
+	public final fun getVersion ()Lorg/gradle/api/provider/Property;
+	public final fun linuxARM32 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun linuxARM32$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun linuxARM64 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun linuxARM64$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun linuxX64 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun linuxX64$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun macosARM64 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun macosARM64$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun macosX64 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun macosX64$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun platform (Ljava/lang/String;Lorg/gradle/api/Action;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun windowsARM64 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun windowsARM64$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun windowsX64 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun windowsX64$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun windowsX86 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun windowsX86$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
+}
+
+public class com/osmerion/gradle/lwjgl3/NativePlatform {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Lorg/gradle/api/Project;Lorg/gradle/api/artifacts/dsl/DependencyFactory;)V
+	public final fun getArtifactClassifier ()Lorg/gradle/api/provider/Property;
+	public final fun getConfiguration ()Lorg/gradle/api/NamedDomainObjectProvider;
+	public final fun getName ()Ljava/lang/String;
+	public final fun match (Lorg/gradle/api/Action;)V
+}
+
+public abstract class com/osmerion/gradle/lwjgl3/OperatingSystem {
+}
+
+public final class com/osmerion/gradle/lwjgl3/OperatingSystem$Custom : com/osmerion/gradle/lwjgl3/OperatingSystem {
+	public fun <init> (Ljava/util/function/Predicate;)V
+}
+
+public final class com/osmerion/gradle/lwjgl3/OperatingSystem$FreeBSD : com/osmerion/gradle/lwjgl3/OperatingSystem {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/OperatingSystem$FreeBSD;
+}
+
+public final class com/osmerion/gradle/lwjgl3/OperatingSystem$Linux : com/osmerion/gradle/lwjgl3/OperatingSystem {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/OperatingSystem$Linux;
+}
+
+public final class com/osmerion/gradle/lwjgl3/OperatingSystem$MacOS : com/osmerion/gradle/lwjgl3/OperatingSystem {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/OperatingSystem$MacOS;
+}
+
+public final class com/osmerion/gradle/lwjgl3/OperatingSystem$Windows : com/osmerion/gradle/lwjgl3/OperatingSystem {
+	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/OperatingSystem$Windows;
+}
+
+public final class com/osmerion/gradle/lwjgl3/OperatingSystemKt {
+	public static final fun OperatingSystem (Ljava/util/function/Predicate;)Lcom/osmerion/gradle/lwjgl3/OperatingSystem;
+}
+
+public class com/osmerion/gradle/lwjgl3/PlatformMatcher {
+	public final fun getArch ()Lorg/gradle/api/provider/Property;
+	public final fun getMatchesCurrent ()Z
+	public final fun getOs ()Lorg/gradle/api/provider/Property;
+}
+
+public final class com/osmerion/gradle/lwjgl3/plugins/LWJGLPlugin : org/gradle/api/Plugin {
+	public fun <init> ()V
+	public synthetic fun apply (Ljava/lang/Object;)V
+	public fun apply (Lorg/gradle/api/Project;)V
+}
+
