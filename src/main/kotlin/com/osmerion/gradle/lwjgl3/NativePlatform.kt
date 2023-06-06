@@ -43,7 +43,7 @@ public open class NativePlatform @Inject constructor(
     public val name: String,
     targetName: String,
     project: Project,
-    private val dependencyFactory: DependencyFactory
+    dependencyFactory: DependencyFactory
 ) {
 
     internal val configurationImpl: NamedDomainObjectProvider<Configuration> = project.configurations.register("lwjgl${targetName.capitalized()}${name.capitalized()}Impl") {

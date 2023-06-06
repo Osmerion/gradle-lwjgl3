@@ -48,38 +48,28 @@ public class LWJGLPlugin : Plugin<Project> {
         val lwjgl3 = extensions.create("lwjgl3", LWJGLExtension::class.java)
 
         lwjgl3.targets.all target@{
-            /*
-             * TODO Investigate if we can somehow get around realizing all
-             *  objects here. Ideally, this would only be triggered when
-             *  the corresponding entry in project.configurations is realized.
-             */
-            libConfigurations.all {
-                dependencies.addAllLater(provider {
-                    val groupName = this@target.group.get()
-                    val version = this@target.version.get()
+            libConfiguration.get().dependencies.addAllLater(provider {
+                val groupName = this@target.group.get()
+                val version = this@target.version.get()
 
-                    modules.get().map { lwjglModule ->
-                        /*
-                         * Kotlin does not guarantee that the string representation returned by
-                         * CharSequence#toString() is equal to the CharSequence.
-                         */
-                        val artifactName = buildString { append(lwjglModule) }
-                        dependencyFactory.create(groupName, artifactName, version)
+                modules.get().map { lwjglModule ->
+                    /*
+                     * Kotlin does not guarantee that the string representation returned by
+                     * CharSequence#toString() is equal to the CharSequence.
+                     */
+                    val artifactName = buildString { append(lwjglModule) }
+                    dependencyFactory.create(groupName, artifactName, version)
+                }
+            })
+
+            platforms.all platform@{
+                nativesConfiguration.get().dependencies.addLater(provider {
+                    if (this@platform.matcher.matchesCurrent) {
+                        dependencyFactory.create(files(this@platform.configuration))
+                    } else {
+                        null
                     }
                 })
-            }
-
-            /* TODO See libConfigurations above */
-            nativesConfigurations.all {
-                platforms.all platform@{
-                    dependencies.addLater(provider {
-                        if (this@platform.matcher.matchesCurrent) {
-                            dependencyFactory.create(files(this@platform.configuration))
-                        } else {
-                            null
-                        }
-                    })
-                }
             }
 
             platforms.configureEach platform@{
@@ -107,10 +97,14 @@ public class LWJGLPlugin : Plugin<Project> {
 
         pluginManager.withPlugin("org.gradle.java") {
             if (implicitTarget.map(String::toBoolean).orNull != false) {
-                lwjgl3.targets.register("main") {
-                    libConfigurations.addLater(configurations.named(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
-                    nativesConfigurations.addLater(configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME))
-                    nativesConfigurations.addLater(configurations.named(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME))
+                val lwjgl3MainTarget = lwjgl3.targets.register("main")
+
+                configurations.named(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME) {
+                    extendsFrom(lwjgl3MainTarget.get().libConfiguration.get())
+                }
+
+                configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME) {
+                    extendsFrom(lwjgl3MainTarget.get().nativesConfiguration.get())
                 }
             }
         }

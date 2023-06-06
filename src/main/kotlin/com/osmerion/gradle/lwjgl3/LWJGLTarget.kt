@@ -35,8 +35,10 @@ import org.gradle.api.DomainObjectSet
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.artifacts.Configuration
+import org.gradle.api.artifacts.ConfigurationContainer
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
+import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import javax.inject.Inject
 
@@ -47,7 +49,8 @@ import javax.inject.Inject
  */
 public abstract class LWJGLTarget @Inject constructor(
     public val name: String,
-    private val objectFactory: ObjectFactory
+    objectFactory: ObjectFactory,
+    configurations: ConfigurationContainer
 ) {
 
     /**
@@ -85,8 +88,9 @@ public abstract class LWJGLTarget @Inject constructor(
         modules.finalizeValueOnRead()
     }
 
-    public val libConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
-    public val nativesConfigurations: DomainObjectSet<Configuration> = objectFactory.domainObjectSet(Configuration::class.java)
+    public val libConfiguration: NamedDomainObjectProvider<Configuration> = configurations.register("testLibConfig")
+
+    public val nativesConfiguration: NamedDomainObjectProvider<Configuration> = configurations.register("testNativesConfig")
 
     public val platforms: NamedDomainObjectContainer<NativePlatform> = objectFactory.domainObjectContainer(NativePlatform::class.java) { name ->
         objectFactory.newInstance(NativePlatform::class.java, name, this@LWJGLTarget.name)
