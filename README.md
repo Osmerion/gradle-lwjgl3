@@ -33,17 +33,21 @@ the appropriate configurations.
 
 ```kotlin
 lwjgl3 {
-    targets.register("main") {
-        libConfigurations.addLater(configurations.named(JavaPlugin.IMPLEMENTATION_CONFIGURATION_NAME))
-        nativesConfigurations.addLater(configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME))
-        nativesConfigurations.addLater(configurations.named(JavaPlugin.TEST_RUNTIME_ONLY_CONFIGURATION_NAME))
-    }
+    targets.register("main")
+}
+
+configurations.named("implementation") {
+    extendsFrom(lwjgl3.targets["main"].libConfiguration.get())
+}
+
+configurations.named("runtimeOnly") {
+    extendsFrom(lwjgl3.targets["main"].nativesConfiguration.get())
 }
 ```
 
-The configurations in `libConfigurations` will have access to the library
-artifacts and the configurations in `nativesConfigurations` will have access to
-the artifacts containing the native libraries for LWJGL for the host.
+The configuration `libConfiguration` contains all Java library dependency
+artifacts and the configuration `nativeConfiguration` includes the artifacts
+containing the native libraries for LWJGL for the current host.
 
 > **Note**: By default, a `main` target as defined above is automatically
 > registered when the `org.gradle.java` plugin is detected. To disable this
@@ -119,9 +123,9 @@ lwjgl3 {
 
 ## Plugin Defaults
 
-| Plugin version | Default LWJGL version |
-|----------------|-----------------------|
-| 0.1.0          | 3.3.2                 |
+| LWJGL3 Gradle Plugin | Default LWJGL version |
+|----------------------|-----------------------|
+| 0.1.0                | 3.3.2                 |
 
 
 ## Building from source
