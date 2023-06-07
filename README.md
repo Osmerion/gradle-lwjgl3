@@ -32,16 +32,14 @@ Gradle project. In the following example, a target is registered and linked to
 the appropriate configurations.
 
 ```kotlin
-lwjgl3 {
-    targets.register("main")
-}
+val lwjgl3MainTarget = targets.register("main")
 
 configurations.named("implementation") {
-    extendsFrom(lwjgl3.targets["main"].libConfiguration.get())
+    extendsFrom(lwjgl3MainTarget.get().libConfiguration.get())
 }
 
 configurations.named("runtimeOnly") {
-    extendsFrom(lwjgl3.targets["main"].nativesConfiguration.get())
+    extendsFrom(lwjgl3MainTarget.get().nativesConfiguration.get())
 }
 ```
 
