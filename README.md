@@ -121,7 +121,7 @@ lwjgl3 {
 
 | Plugin version | Default LWJGL version |
 |----------------|-----------------------|
-| 0.1.0          | 3.3.1                 |
+| 0.1.0          | 3.3.2                 |
 
 
 ## Building from source
