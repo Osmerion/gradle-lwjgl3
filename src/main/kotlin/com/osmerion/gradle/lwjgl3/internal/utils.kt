@@ -30,7 +30,6 @@
  */
 package com.osmerion.gradle.lwjgl3.internal
 
-import java.util.*
 import kotlin.contracts.*
 
 @OptIn(ExperimentalContracts::class)
