@@ -43,6 +43,7 @@ public open class NativePlatform @Inject constructor(
     public val name: String,
     targetName: String,
     project: Project,
+    @Suppress("UnstableApiUsage")
     dependencyFactory: DependencyFactory
 ) {
 
@@ -57,6 +58,7 @@ public open class NativePlatform @Inject constructor(
         isTransitive = true
 
         dependencies.addLater(configurationImpl.map {
+            @Suppress("UnstableApiUsage")
             dependencyFactory.create(it.incoming.artifactView { lenient(true) }.files)
         })
     }

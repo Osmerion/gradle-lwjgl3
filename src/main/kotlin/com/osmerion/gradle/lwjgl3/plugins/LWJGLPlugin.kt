@@ -58,6 +58,8 @@ public class LWJGLPlugin : Plugin<Project> {
                      * CharSequence#toString() is equal to the CharSequence.
                      */
                     val artifactName = buildString { append(lwjglModule) }
+
+                    @Suppress("UnstableApiUsage")
                     dependencyFactory.create(groupName, artifactName, version)
                 }
             })
@@ -65,6 +67,7 @@ public class LWJGLPlugin : Plugin<Project> {
             platforms.all platform@{
                 nativesConfiguration.get().dependencies.addLater(provider {
                     if (this@platform.matcher.matchesCurrent) {
+                        @Suppress("UnstableApiUsage")
                         dependencyFactory.create(files(this@platform.configuration))
                     } else {
                         null
@@ -86,6 +89,7 @@ public class LWJGLPlugin : Plugin<Project> {
                             val artifactName = buildString { append(lwjglModule) }
                             val classifier = this@platform.artifactClassifier.get()
 
+                            @Suppress("UnstableApiUsage")
                             dependencyFactory.create(groupName, artifactName, version, classifier, "jar")
                         }
                     })
