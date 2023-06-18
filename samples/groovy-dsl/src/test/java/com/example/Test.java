@@ -28,10 +28,13 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-module com.example {
+package com.example;
 
-    requires org.lwjgl;
-    requires org.lwjgl.glfw;
-    requires org.lwjgl.opengl;
+public final class Test {
+
+    @org.junit.jupiter.api.Test
+    public void main() {
+        org.lwjgl.system.Library.initialize();
+    }
 
 }

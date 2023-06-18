@@ -28,47 +28,13 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-import com.osmerion.gradle.lwjgl3.*
+package com.example;
 
-plugins {
-    java
-    id("com.osmerion.lwjgl3") version "0.1.0"
-}
+public final class Test {
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+    @org.junit.jupiter.api.Test
+    public void main() {
+        org.lwjgl.system.Library.initialize();
     }
-}
 
-lwjgl3 {
-    targets {
-        named("main") {
-            modules.add(LWJGL.Core)
-            modules.add(LWJGL.GLFW)
-            modules.add(LWJGL.OpenGL)
-
-            linuxX64()
-            macosX64()
-            windowsX64()
-        }
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-tasks {
-    test {
-        useJUnitPlatform()
-    }
-}
-
-dependencies {
-    testImplementation(platform(libs.junit.bom))
-
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.params)
-    testRuntimeOnly(libs.junit.jupiter.engine)
 }

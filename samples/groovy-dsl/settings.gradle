@@ -28,41 +28,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.example;
-
-import org.lwjgl.glfw.GLFWErrorCallback;
-
-import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.system.MemoryUtil.*;
-
-public final class Main {
-
-    public static void main(String[] args) {
-        GLFWErrorCallback.createPrint().set();
-        glfwInit();
-
-        glfwDefaultWindowHints();
-        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-
-
-        int INITIAL_WIDTH = 400;
-        int INITIAL_HEIGHT = 400;
-
-        long hWindow = glfwCreateWindow(INITIAL_WIDTH, INITIAL_HEIGHT, "", NULL, NULL);
-        if (hWindow == NULL) throw new RuntimeException();
-
-        glfwSetWindowSizeLimits(hWindow, INITIAL_WIDTH, INITIAL_HEIGHT, GLFW_DONT_CARE, GLFW_DONT_CARE);
-
-
-        glfwMakeContextCurrent(hWindow);
-
-        glfwSwapInterval(1);
-        glfwShowWindow(hWindow);
-
-        while (!glfwWindowShouldClose(hWindow)) {
-            glfwWaitEvents();
-        }
+pluginManagement {
+    plugins {
+        id "org.gradle.toolchains.foojay-resolver-convention" version "0.5.0"
     }
 
+    includeBuild("../../")
 }
+
+plugins {
+    id "org.gradle.toolchains.foojay-resolver-convention"
+}
+
+rootProject.name = "sample"
