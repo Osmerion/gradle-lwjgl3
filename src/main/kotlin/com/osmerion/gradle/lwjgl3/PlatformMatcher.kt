@@ -34,11 +34,27 @@ import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
 import javax.inject.Inject
 
+/**
+ * A predicate responsible for matching a platform.
+ *
+ * @since   0.1.0
+ */
 public open class PlatformMatcher @Inject internal constructor(
     objectFactory: ObjectFactory
 ) {
 
+    /**
+     * The matched operating system family.
+     *
+     * @since   0.1.0
+     */
     public val os: Property<OperatingSystem> = objectFactory.property(OperatingSystem::class.java)
+
+    /**
+     * The matched architecture.
+     *
+     * @since   0.1.0
+     */
     public val arch: Property<Architecture> = objectFactory.property(Architecture::class.java)
 
     init {
@@ -46,6 +62,11 @@ public open class PlatformMatcher @Inject internal constructor(
         arch.finalizeValueOnRead()
     }
 
+    /**
+     * Returns whether the current platform is matched.
+     *
+     * @since   0.1.0
+     */
     public val matchesCurrent: Boolean by lazy {
         val osName = System.getProperty("os.name")
         val osArch = System.getProperty("os.arch")

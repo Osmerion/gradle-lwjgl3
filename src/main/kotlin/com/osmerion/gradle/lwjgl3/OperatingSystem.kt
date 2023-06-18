@@ -33,9 +33,11 @@ package com.osmerion.gradle.lwjgl3
 import java.util.function.Predicate
 
 /**
- * TODO doc
+ * A custom [OperatingSystem] that tests the given predicate against the
+ * `os.name` system property.
  *
- * @param matches
+ * @param matches   the predicate used to detect if the current host is part of
+ *                  the operating system family
  *
  * @since   0.1.0
  */
@@ -43,7 +45,7 @@ public fun OperatingSystem(matches: Predicate<String>): OperatingSystem =
     OperatingSystem.Custom(matches)
 
 /**
- * TODO doc
+ * An operating system family.
  *
  * @since   0.1.0
  */
@@ -51,14 +53,29 @@ public sealed class OperatingSystem {
 
     internal abstract fun matches(osName: String): Boolean
 
+    /**
+     * The FreeBSD operating system family.
+     *
+     * @since   0.1.0
+     */
     public object FreeBSD : OperatingSystem() {
         override fun matches(osName: String): Boolean = osName.contains("freebsd", ignoreCase = true)
     }
 
+    /**
+     * The Linux operating system family.
+     *
+     * @since   0.1.0
+     */
     public object Linux : OperatingSystem() {
         override fun matches(osName: String): Boolean = osName.contains("linux", ignoreCase = true)
     }
 
+    /**
+     * The macOS operating system family.
+     *
+     * @since   0.1.0
+     */
     public object MacOS : OperatingSystem() {
 
         override fun matches(osName: String): Boolean =
@@ -68,6 +85,11 @@ public sealed class OperatingSystem {
 
     }
 
+    /**
+     * The Windows operating system family.
+     *
+     * @since   0.1.0
+     */
     public object Windows : OperatingSystem() {
         override fun matches(osName: String): Boolean = osName.contains("windows", ignoreCase = true)
     }

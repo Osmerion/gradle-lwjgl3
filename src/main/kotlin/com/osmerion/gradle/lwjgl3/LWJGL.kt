@@ -31,24 +31,15 @@
 package com.osmerion.gradle.lwjgl3
 
 /**
- * Predefined [LWJGLModule] objects.
+ * Type-safe abstractions for LWJGL modules.
  *
  * @since   0.1.0
  */
-public object LWJGLModules {
-
-    private val _all: MutableSet<LWJGLModule> = mutableSetOf()
-    internal val all: Set<CharSequence> get() = _all.toSet()
+public object LWJGL {
 
     private data class LWJGLModule(
         val artifactName: String
-    ) : CharSequence by artifactName {
-
-        init {
-            _all.add(this)
-        }
-
-    }
+    ) : CharSequence by artifactName
 
     /**
      * LWJGL

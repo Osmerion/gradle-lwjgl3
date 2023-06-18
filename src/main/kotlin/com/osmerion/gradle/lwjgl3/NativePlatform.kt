@@ -39,7 +39,14 @@ import org.gradle.api.artifacts.dsl.DependencyFactory
 import org.gradle.api.provider.Property
 import javax.inject.Inject
 
-public open class NativePlatform @Inject constructor(
+/**
+ * A representation of a native platform.
+ *
+ * @param name  the name of the platform
+ *
+ * @since   0.1.0
+ */
+public open class NativePlatform @Inject internal constructor(
     public val name: String,
     targetName: String,
     project: Project,
@@ -52,6 +59,11 @@ public open class NativePlatform @Inject constructor(
         isCanBeResolved = true
     }
 
+    /**
+     * The configuration that contains the native artifacts for this platform.
+     *
+     * @since   0.1.0
+     */
     public val configuration: NamedDomainObjectProvider<Configuration> = project.configurations.register("lwjgl${targetName.capitalized()}${name.capitalized()}") {
         isCanBeConsumed = false
         isCanBeResolved = true
@@ -63,6 +75,11 @@ public open class NativePlatform @Inject constructor(
         })
     }
 
+    /**
+     * The classifier of the native artifacts for this platform.
+     *
+     * @since   0.1.0
+     */
     public val artifactClassifier: Property<String> = project.objects.property(String::class.java)
 
     init {
@@ -71,6 +88,11 @@ public open class NativePlatform @Inject constructor(
 
     internal val matcher: PlatformMatcher = project.objects.newInstance(PlatformMatcher::class.java)
 
+    /**
+     * Configures the [PlatformMatcher] using the given [action].
+     *
+     * @since   0.1.0
+     */
     public fun match(action: Action<PlatformMatcher>) {
         action.execute(matcher)
     }

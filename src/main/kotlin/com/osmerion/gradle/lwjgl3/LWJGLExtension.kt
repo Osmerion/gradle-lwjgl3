@@ -39,12 +39,12 @@ import javax.inject.Inject
  *
  * @since   0.1.0
  */
-public open class LWJGLExtension @Inject constructor(
+public open class LWJGLExtension @Inject internal constructor(
     objectFactory: ObjectFactory
 ) {
 
     /**
-     * TODO doc
+     * Returns the targets of this project.
      *
      * @since   0.1.0
      */

@@ -30,20 +30,22 @@
  */
 package com.osmerion.gradle.lwjgl3
 
+import com.osmerion.gradle.lwjgl3.internal.capitalized
 import org.gradle.api.Action
-import org.gradle.api.DomainObjectSet
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.NamedDomainObjectProvider
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ConfigurationContainer
 import org.gradle.api.model.ObjectFactory
 import org.gradle.api.provider.Property
-import org.gradle.api.provider.Provider
 import org.gradle.api.provider.SetProperty
 import javax.inject.Inject
 
 /**
- * TODO doc
+ * A _target_ serves as abstraction to handle multiple LWJGL setups (for
+ * example, in different source sets) in a single Gradle project.
+ *
+ * @see LWJGLExtension.targets
  *
  * @since   0.1.0
  */
@@ -88,17 +90,48 @@ public abstract class LWJGLTarget @Inject constructor(
         modules.finalizeValueOnRead()
     }
 
-    public val libConfiguration: NamedDomainObjectProvider<Configuration> = configurations.register("testLibConfig")
+    /**
+     * The configuration for this target providing the library artifacts.
+     *
+     * @since   0.1.0
+     */
+    public val libConfiguration: NamedDomainObjectProvider<Configuration> = configurations.register("lwjgl${name.capitalized()}Libs")
 
-    public val nativesConfiguration: NamedDomainObjectProvider<Configuration> = configurations.register("testNativesConfig")
+    /**
+     * The configuration for this target providing the artifacts containing the
+     * native libraries for the platform matching the host.
+     *
+     * @since   0.1.0
+     */
+    public val nativesConfiguration: NamedDomainObjectProvider<Configuration> = configurations.register("lwjgl${name.capitalized()}Natives")
 
+    /**
+     * The platforms included in this target.
+     *
+     * @since   0.1.0
+     */
     public val platforms: NamedDomainObjectContainer<NativePlatform> = objectFactory.domainObjectContainer(NativePlatform::class.java) { name ->
         objectFactory.newInstance(NativePlatform::class.java, name, this@LWJGLTarget.name)
     }
 
+    /**
+     * Adds a platform with the given name and configuration.
+     *
+     * @param name      the name for the platform
+     * @param action    the action to configure the platform
+     *
+     * @since   0.1.0
+     */
     public fun platform(name: String, action: Action<NativePlatform>): NamedDomainObjectProvider<NativePlatform> =
         platforms.register(name, action)
 
+    /**
+     * Adds a platform configured to match Windows AArch32.
+     *
+     * @param name  the platform name (default `LinuxARM32`)
+     *
+     * @since   0.1.0
+     */
     public fun linuxARM32(name: String = "LinuxARM32"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-linux-arm32")
 
@@ -108,6 +141,13 @@ public abstract class LWJGLTarget @Inject constructor(
         }
     }
 
+    /**
+     * Adds a platform configured to match Linux AArch64.
+     *
+     * @param name  the platform name (default `LinuxARM64`)
+     *
+     * @since   0.1.0
+     */
     public fun linuxARM64(name: String = "LinuxARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-linux-arm64")
 
@@ -117,9 +157,15 @@ public abstract class LWJGLTarget @Inject constructor(
         }
     }
 
+    /**
+     * Adds a platform configured to match Linux x64.
+     *
+     * @param name  the platform name (default `LinuxX64`)
+     *
+     * @since   0.1.0
+     */
     public fun linuxX64(name: String = "LinuxX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-linux")
-
 
         match {
             os.set(OperatingSystem.Linux)
@@ -127,6 +173,13 @@ public abstract class LWJGLTarget @Inject constructor(
         }
     }
 
+    /**
+     * Adds a platform configured to match macOS AArch64.
+     *
+     * @param name  the platform name (default `MacOsARM64`)
+     *
+     * @since   0.1.0
+     */
     public fun macosARM64(name: String = "MacOsARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-macos-arm64")
 
@@ -136,6 +189,13 @@ public abstract class LWJGLTarget @Inject constructor(
         }
     }
 
+    /**
+     * Adds a platform configured to match macOS x64.
+     *
+     * @param name  the platform name (default `MacOsX64`)
+     *
+     * @since   0.1.0
+     */
     public fun macosX64(name: String = "MacOsX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-macos-arm64")
 
@@ -145,6 +205,13 @@ public abstract class LWJGLTarget @Inject constructor(
         }
     }
 
+    /**
+     * Adds a platform configured to match Windows AArch64.
+     *
+     * @param name  the platform name (default `WinARM64`)
+     *
+     * @since   0.1.0
+     */
     public fun windowsARM64(name: String = "WinARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-windows-arm64")
 
@@ -154,6 +221,13 @@ public abstract class LWJGLTarget @Inject constructor(
         }
     }
 
+    /**
+     * Adds a platform configured to match Windows x64.
+     *
+     * @param name  the platform name (default `WinX64`)
+     *
+     * @since   0.1.0
+     */
     public fun windowsX64(name: String = "WinX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-windows")
 
@@ -163,6 +237,13 @@ public abstract class LWJGLTarget @Inject constructor(
         }
     }
 
+    /**
+     * Adds a platform configured to match Windows x86.
+     *
+     * @param name  the platform name (default `WinX86`)
+     *
+     * @since   0.1.0
+     */
     public fun windowsX86(name: String = "WinX86"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-windows-x86")
 

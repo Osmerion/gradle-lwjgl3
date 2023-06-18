@@ -33,9 +33,11 @@ package com.osmerion.gradle.lwjgl3
 import java.util.function.Predicate
 
 /**
- * TODO doc
+ * A custom [Architecture] that tests the given predicate against the `os.arch`
+ * system property.
  *
- * @param matches
+ * @param matches   the predicate used to detect if the current host is part of
+ *                  the architecture type
  *
  * @since   0.1.0
  */
@@ -43,7 +45,7 @@ public fun Architecture(matches: Predicate<String>): Architecture =
     Architecture.Custom(matches)
 
 /**
- * TODO doc
+ * A computer architecture.
  *
  * @since   0.1.0
  */
@@ -51,18 +53,38 @@ public sealed class Architecture {
 
     internal abstract fun matches(arch: String): Boolean
 
+    /**
+     * The ARM32 architecture.
+     *
+     * @since   0.1.0
+     */
     public object ARM32 : Architecture() {
         override fun matches(arch: String): Boolean = (arch == "arm")
     }
 
+    /**
+     * The ARM64 architecture.
+     *
+     * @since   0.1.0
+     */
     public object ARM64 : Architecture() {
         override fun matches(arch: String): Boolean = (arch == "aarch64" || arch == "armv8")
     }
 
+    /**
+     * The x86 architecture.
+     *
+     * @since   0.1.0
+     */
     public object X86 : Architecture() {
         override fun matches(arch: String): Boolean = (arch == "i386") || (arch == "x86")
     }
 
+    /**
+     * The x86-64 architecture.
+     *
+     * @since   0.1.0
+     */
     @Suppress("ClassName")
     public object X86_64 : Architecture() {
         override fun matches(arch: String): Boolean = (arch == "x86_64") || (arch == "amd64")
