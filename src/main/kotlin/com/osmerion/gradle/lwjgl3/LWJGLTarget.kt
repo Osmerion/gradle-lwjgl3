@@ -132,6 +132,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
+    @JvmOverloads
     public fun linuxARM32(name: String = "LinuxARM32"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-linux-arm32")
 
@@ -148,6 +149,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
+    @JvmOverloads
     public fun linuxARM64(name: String = "LinuxARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-linux-arm64")
 
@@ -164,6 +166,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
+    @JvmOverloads
     public fun linuxX64(name: String = "LinuxX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-linux")
 
@@ -180,6 +183,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
+    @JvmOverloads
     public fun macosARM64(name: String = "MacOsARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-macos-arm64")
 
@@ -196,6 +200,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
+    @JvmOverloads
     public fun macosX64(name: String = "MacOsX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-macos-arm64")
 
@@ -212,6 +217,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
+    @JvmOverloads
     public fun windowsARM64(name: String = "WinARM64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-windows-arm64")
 
@@ -228,6 +234,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
+    @JvmOverloads
     public fun windowsX64(name: String = "WinX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-windows")
 
@@ -244,6 +251,7 @@ public abstract class LWJGLTarget @Inject constructor(
      *
      * @since   0.1.0
      */
+    @JvmOverloads
     public fun windowsX86(name: String = "WinX86"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-windows-x86")
 
