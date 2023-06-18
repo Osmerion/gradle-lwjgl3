@@ -61,13 +61,12 @@ libraries. Modules can be added to a target using the `useModule` and
 ```kotlin
 lwjgl3 {
     targets.named("main") {
-        modules.add(LWJGLModules.Core)
+        modules.add(LWJGL.Core)
     }
 }
 ```
 
-Predefined accessors for known LWJGL modules are available in the `LWJGLModules`
-class.
+Predefined accessors for known LWJGL modules are available in the `LWJGL` class.
 
 #### Custom Modules
 
@@ -87,13 +86,44 @@ lwjgl3 {
 ### Platforms
 
 As LWJGL provides bindings to native libraries, it is also necessary to declare
-which native platforms should be included in a target. 
+which native platforms should be included in a target. FunSeveral functions are
+available for LWJGL targets and can be used to include a predefined platform.
+E.g.:
 
-!TODO
+```kotlin
+lwjgl3 {
+    targets.named("main") {
+        windowsX64()
+    }
+}
+```
+
+The following predefined platforms are available:
+ - `linuxARM32`, `linuxARM64`, `linuxX64`
+ - `macosARM64`, `macosX64`
+ - `windowsARM64`, `windowsX64`, `windowsX86`
 
 #### Custom Platforms
 
-!TODO
+Additionally, custom platforms can be declared using the `platform` function.
+This is mostly useful when porting LWJGL to new platforms or when the plugin has
+not been updated yet to include new predefined functions.
+
+```kotlin
+lwjgl3 {
+    targets.named("main") {
+        platform(name = "FreeBSDX64") {
+            artifactClassifier.set("natives-freebsd")
+
+            match {
+                os.set(OperatingSystem.FreeBSD)
+                arch.set(Architecture.X86_64)
+            }
+        }
+    }
+}
+```
+
 
 ### Configuring the LWJGL Artifacts
 
