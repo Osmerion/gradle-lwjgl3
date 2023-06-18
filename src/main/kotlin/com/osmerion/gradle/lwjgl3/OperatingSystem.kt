@@ -72,7 +72,7 @@ public sealed class OperatingSystem {
         override fun matches(osName: String): Boolean = osName.contains("windows", ignoreCase = true)
     }
 
-    public class Custom(private val matches: Predicate<String>) : OperatingSystem() {
+    internal class Custom(private val matches: Predicate<String>) : OperatingSystem() {
         override fun matches(osName: String): Boolean = matches.test(osName)
     }
 

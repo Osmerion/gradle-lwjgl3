@@ -9,10 +9,6 @@ public final class com/osmerion/gradle/lwjgl3/Architecture$ARM64 : com/osmerion/
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$ARM64;
 }
 
-public final class com/osmerion/gradle/lwjgl3/Architecture$Custom : com/osmerion/gradle/lwjgl3/Architecture {
-	public fun <init> (Ljava/util/function/Predicate;)V
-}
-
 public final class com/osmerion/gradle/lwjgl3/Architecture$X86 : com/osmerion/gradle/lwjgl3/Architecture {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$X86;
 }
@@ -124,10 +120,6 @@ public class com/osmerion/gradle/lwjgl3/NativePlatform {
 }
 
 public abstract class com/osmerion/gradle/lwjgl3/OperatingSystem {
-}
-
-public final class com/osmerion/gradle/lwjgl3/OperatingSystem$Custom : com/osmerion/gradle/lwjgl3/OperatingSystem {
-	public fun <init> (Ljava/util/function/Predicate;)V
 }
 
 public final class com/osmerion/gradle/lwjgl3/OperatingSystem$FreeBSD : com/osmerion/gradle/lwjgl3/OperatingSystem {

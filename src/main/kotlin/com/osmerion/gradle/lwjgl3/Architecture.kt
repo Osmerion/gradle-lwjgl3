@@ -68,7 +68,7 @@ public sealed class Architecture {
         override fun matches(arch: String): Boolean = (arch == "x86_64") || (arch == "amd64")
     }
 
-    public class Custom(private val matches: Predicate<String>) : Architecture() {
+    internal class Custom(private val matches: Predicate<String>) : Architecture() {
         override fun matches(arch: String): Boolean = matches.test(arch)
     }
 
