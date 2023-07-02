@@ -49,6 +49,7 @@ class LWJGLPluginTest {
             // See https://docs.gradle.org/current/userguide/compatibility.html
 //            val javaVersion = JavaVersion.current()
 
+            add("8.2")
             add("8.1.1")
             add("8.1")
 
@@ -56,6 +57,7 @@ class LWJGLPluginTest {
             add("8.0.1")
             add("8.0")
 
+            add("7.6.2")
             add("7.6.1")
             add("7.6")
         }
