@@ -31,7 +31,6 @@
 package com.osmerion.build
 
 import org.gradle.api.*
-import org.gradle.api.publish.maven.*
 import org.gradle.kotlin.dsl.*
 
 private const val DEPLOYMENT_KEY = "com.osmerion.build.Deployment"
@@ -44,13 +43,7 @@ val Project.deployment: Deployment
             (when {
                 hasProperty("release") -> Deployment(
                     BuildType.RELEASE,
-                    "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/",
-                    getProperty("sonatypeUsername"),
-                    getProperty("sonatypePassword")
-                )
-                hasProperty("snapshot") -> Deployment(
-                    BuildType.SNAPSHOT,
-                    "https://s01.oss.sonatype.org/content/repositories/snapshots/",
+                    "https://s01.oss.sonatype.org/service/local/staging/deployByRepositoryId/${getProperty("stagingRepositoryId")}",
                     getProperty("sonatypeUsername"),
                     getProperty("sonatypePassword")
                 )

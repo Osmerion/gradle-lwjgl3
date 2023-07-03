@@ -122,6 +122,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
           ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
+          ORG_GRADLE_PROJECT_stagingRepositoryId: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
         with:
           arguments: publishAllPublicationsToMavenRepository -Prelease --info -S --show-version
           gradle-home-cache-cleanup: true
@@ -138,7 +139,7 @@ jobs:
           base-url: ${{ vars.SONATYPE_BASE_URL }}
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
-          repository-id: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
+          staging-repository-id: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
           description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
 
 
@@ -194,7 +195,7 @@ jobs:
           base-url: ${{ vars.SONATYPE_BASE_URL }}
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
-          repository-id: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
+          staging-repository-id: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
           description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
 
 
