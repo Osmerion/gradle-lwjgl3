@@ -122,14 +122,14 @@ jobs:
 
   close-staging-repository:
     name: Close Staging Repository
-    needs: nexus-upload
+    needs: [create-staging-repo, nexus-upload]
     runs-on: ubuntu-latest
     steps:
       - uses: TheMrMilchmann/nexus-actions/close-staging-repo@v1
         with:
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
-          repository-id: ${{ jobs["create-staging-repo"].outputs["staging-repository-id"] }}
+          repository-id: ${{ needs["create-staging-repo"].outputs["staging-repository-id"] }}
           description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
 
 
@@ -171,7 +171,7 @@ jobs:
 
   nexus-release:
     name: Release to Nexus
-    needs: [close-staging-repository, gpp-release]
+    needs: [create-staging-repo, close-staging-repository, gpp-release]
     runs-on: ubuntu-latest
     steps:
       - name: Release Staging Repository
@@ -179,7 +179,7 @@ jobs:
         with:
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
-          repository-id: ${{ jobs["create-staging-repo"].outputs["staging-repository-id"] }}
+          repository-id: ${{ needs["create-staging-repo"].outputs["staging-repository-id"] }}
           description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
 
 
