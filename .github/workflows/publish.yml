@@ -6,7 +6,6 @@ on:
         description: The environment to publish to
         type: environment
 
-
 env:
   JDK_VERSION: "19"
   WORKSPACE_ARCHIVE: workspace.tar
@@ -80,10 +79,12 @@ jobs:
     name: Create Staging Repository
     needs: check
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - id: create
         uses: TheMrMilchmann/nexus-actions/create-staging-repo@v1
         with:
+          base-url: ${{ vars.SONATYPE_BASE_URL }}
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
           staging-profile-id: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
@@ -96,6 +97,7 @@ jobs:
     name: Upload to Nexus
     needs: create-staging-repository
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout
         uses: actions/download-artifact@v3
@@ -115,8 +117,11 @@ jobs:
 
       - name: Gradle Publish
         uses: gradle/gradle-build-action@v2
+        env:
+          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
+          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
         with:
-          arguments: check publishAllPublicationsToMavenRepository -Prelease --info -S --show-version
+          arguments: publishAllPublicationsToMavenRepository -Prelease --info -S --show-version
           gradle-home-cache-cleanup: true
 
 
@@ -124,9 +129,11 @@ jobs:
     name: Close Staging Repository
     needs: [create-staging-repository, nexus-upload]
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - uses: TheMrMilchmann/nexus-actions/close-staging-repo@v1
         with:
+          base-url: ${{ vars.SONATYPE_BASE_URL }}
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
           repository-id: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
@@ -137,6 +144,7 @@ jobs:
     name: Release to Gradle Plugin Portal
     needs: close-staging-repository
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout
         uses: actions/download-artifact@v3
@@ -173,10 +181,12 @@ jobs:
     name: Release to Nexus
     needs: [create-staging-repository, close-staging-repository, gpp-release]
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     steps:
       - name: Release Staging Repository
         uses: TheMrMilchmann/nexus-actions/release-staging-repo@v1
         with:
+          base-url: ${{ vars.SONATYPE_BASE_URL }}
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
           repository-id: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
