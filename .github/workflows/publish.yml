@@ -89,7 +89,7 @@ jobs:
           staging-profile-id: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
           description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
     outputs:
-      staging-repository-id: ${{ steps.create.outputs.staging-repository-id }}
+      staging-repository-id: ${{ steps.create.outputs["staging-repository-id"] }}
 
 
   nexus-upload:
@@ -129,7 +129,7 @@ jobs:
         with:
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
-          repository-id: ${{ jobs.create-staging-repo.outputs.staging-repository-id }}
+          repository-id: ${{ jobs["create-staging-repo"].outputs["staging-repository-id"] }}
           description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
 
 
@@ -179,7 +179,7 @@ jobs:
         with:
           username: ${{ secrets.SONATYPE_USERNAME }}
           password: ${{ secrets.SONATYPE_PASSWORD }}
-          repository_id: ${{ jobs.create-staging-repo.outputs.staging-repository-id }}
+          repository-id: ${{ jobs["create-staging-repo"].outputs["staging-repository-id"] }}
           description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
 
 
