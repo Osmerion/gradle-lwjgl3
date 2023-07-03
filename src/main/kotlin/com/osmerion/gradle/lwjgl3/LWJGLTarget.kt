@@ -202,7 +202,7 @@ public abstract class LWJGLTarget @Inject constructor(
      */
     @JvmOverloads
     public fun macosX64(name: String = "MacOsX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
-        artifactClassifier.convention("natives-macos-arm64")
+        artifactClassifier.convention("natives-macos")
 
         match {
             os.set(OperatingSystem.MacOS)
