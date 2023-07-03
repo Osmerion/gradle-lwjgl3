@@ -118,6 +118,8 @@ jobs:
       - name: Gradle Publish
         uses: gradle/gradle-build-action@v2
         env:
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGKEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
           ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
         with:
@@ -172,6 +174,9 @@ jobs:
 
       - name: Gradle Publish
         uses: gradle/gradle-build-action@v2
+        env:
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGKEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
         with:
           arguments: check publishPlugins -Prelease --info -S --show-version
           gradle-home-cache-cleanup: true
