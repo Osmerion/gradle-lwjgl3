@@ -198,7 +198,7 @@ jobs:
   cleanup:
     name: Cleanup
     if: ${{ always() }}
-    needs: [release-staging-repository, release-gradle-plugin]
+    needs: [gpp-release, nexus-release]
     runs-on: ubuntu-latest
     steps:
       - name: Cleanup
