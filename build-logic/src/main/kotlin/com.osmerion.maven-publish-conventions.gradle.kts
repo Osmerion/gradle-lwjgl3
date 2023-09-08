@@ -28,9 +28,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-import com.osmerion.build.*
-import com.osmerion.build.BuildType
-
 plugins {
     id("com.osmerion.base-conventions")
     `maven-publish`
@@ -86,7 +83,8 @@ publishing {
 }
 
 signing {
-    isRequired = (deployment.type === BuildType.RELEASE)
+    // Only require signing when publishing to a non-local maven repository
+    setRequired { gradle.taskGraph.allTasks.any { it is PublishToMavenRepository } }
 
     val signingKey: String? by project
     val signingPassword: String? by project
