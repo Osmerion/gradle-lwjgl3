@@ -28,17 +28,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-import com.osmerion.build.*
-import com.osmerion.build.BuildType
-
-group = "com.osmerion.gradle.lwjgl3"
-
-val nextVersion = "0.2.0"
-version = when (deployment.type) {
-    BuildType.SNAPSHOT -> "$nextVersion-SNAPSHOT"
-    else -> nextVersion
-}
-
 repositories {
     mavenCentral()
 }

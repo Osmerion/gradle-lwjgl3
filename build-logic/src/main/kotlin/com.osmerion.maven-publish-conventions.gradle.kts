@@ -32,19 +32,25 @@ import com.osmerion.build.*
 import com.osmerion.build.BuildType
 
 plugins {
-    signing
-    `maven-publish`
     id("com.osmerion.base-conventions")
+    `maven-publish`
+    signing
 }
 
 publishing {
     repositories {
-        maven {
-            url = uri(deployment.repo)
+        val sonatypeUsername: String? by project
+        val sonatypePassword: String? by project
+        val stagingRepositoryId: String? by project
 
-            credentials {
-                username = deployment.user
-                password = deployment.password
+        if (sonatypeUsername != null && sonatypePassword != null && stagingRepositoryId != null) {
+            maven {
+                url = uri("https://s01.oss.sonatype.org/service/local/staging/deployByRepositoryId/$stagingRepositoryId/")
+
+                credentials {
+                    username = sonatypeUsername
+                    password = sonatypePassword
+                }
             }
         }
     }
