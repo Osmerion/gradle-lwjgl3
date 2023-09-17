@@ -1,6 +1,6 @@
 ### 0.1.0
 
-_Released 2023 July 03_
+_Released 2023 Jul 03_
 
 #### Overview
 
