@@ -19,7 +19,7 @@ apply but the exact syntax may differ.
 
 ```kotlin
 plugins {
-    id("com.osmerion.lwjgl3") version "0.1.0"
+    id("com.osmerion.lwjgl3") version "0.2.0"
 }
 ```
 
@@ -136,7 +136,7 @@ LWJGL artifacts.
 lwjgl3 {
     targets.named("main") {
         group.set("org.lwjgl")
-        version.set("3.3.2")
+        version.set("3.3.3")
     }
 }
 ```
@@ -153,6 +153,7 @@ lwjgl3 {
 
 | LWJGL3 Gradle Plugin | Default LWJGL version |
 |----------------------|-----------------------|
+| 0.2.0                | 3.3.3                 |
 | 0.1.0                | 3.3.2                 |
 
 
