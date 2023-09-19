@@ -55,8 +55,7 @@ containing the native libraries for LWJGL for the current host.
 ### Modules
 
 LWJGL consists of many modules which contain bindings to different native
-libraries. Modules can be added to a target using the `useModule` and
-`useModules` functions as follows:
+libraries. Modules can be added to a target as follows:
 
 ```kotlin
 lwjgl3 {
