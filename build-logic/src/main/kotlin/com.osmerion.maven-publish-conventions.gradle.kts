@@ -54,12 +54,12 @@ publishing {
     publications.withType<MavenPublication>().configureEach {
         pom {
             name.set(project.name)
-            url.set("https://github.com/Osmerion/lwjgl3-gradle-plugin")
+            url.set("https://github.com/Osmerion/gradle-lwjgl3")
 
             licenses {
                 license {
                     name.set("BSD-3-Clause")
-                    url.set("https://github.com/Osmerion/lwjgl3-gradle-plugin/blob/master/LICENSE")
+                    url.set("https://github.com/Osmerion/gradle-lwjgl3/blob/master/LICENSE")
                     distribution.set("repo")
                 }
             }
@@ -74,9 +74,9 @@ publishing {
             }
 
             scm {
-                connection.set("scm:git:git://github.com/Osmerion/lwjgl3-gradle-plugin.git")
-                developerConnection.set("scm:git:git://github.com/Osmerion/lwjgl3-gradle-plugin.git")
-                url.set("https://github.com/Osmerion/lwjgl3-gradle-plugin.git")
+                connection.set("scm:git:git://github.com/Osmerion/gradle-lwjgl3.git")
+                developerConnection.set("scm:git:git://github.com/Osmerion/gradle-lwjgl3.git")
+                url.set("https://github.com/Osmerion/gradle-lwjgl3.git")
             }
         }
     }
