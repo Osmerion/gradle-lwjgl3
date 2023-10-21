@@ -30,7 +30,7 @@ jobs:
       - name: Gradle Assemble
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: assemble -Psnapshot --info -S --show-version
+          arguments: assemble --info -S --show-version
           gradle-home-cache-cleanup: true
 
       - name: Tar files
@@ -71,7 +71,7 @@ jobs:
       - name: Gradle Check
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: check -Psnapshot --info -S --show-version -Ptoolchain.functionalTest.version=${{ matrix.jdk }}
+          arguments: check --info -S --show-version -Ptoolchain.functionalTest.version=${{ matrix.jdk }}
           gradle-home-cache-cleanup: true
 
 
@@ -124,7 +124,7 @@ jobs:
           ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
           ORG_GRADLE_PROJECT_stagingRepositoryId: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
         with:
-          arguments: publishAllPublicationsToMavenRepository -Prelease --info -S --show-version
+          arguments: publishAllPublicationsToMavenRepository --info -S --show-version
           gradle-home-cache-cleanup: true
 
 
@@ -180,7 +180,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGKEY }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
         with:
-          arguments: check publishPlugins -Prelease --info -S --show-version
+          arguments: check publishPlugins --info -S --show-version
           gradle-home-cache-cleanup: true
 
 
