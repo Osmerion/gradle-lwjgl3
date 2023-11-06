@@ -11,9 +11,10 @@ A Gradle plugin to simplify working with [LWJGL 3](https://lwjgl.org).
 
 ## Usage
 
-> **Note**: The documentation of this plugin is written in [Gradle's Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html).
-The plugin can also be used with Groovy build scripts and all concepts still
-apply but the exact syntax may differ.
+> [!NOTE]
+> The documentation of this plugin is written in [Gradle's Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html).
+> The plugin can also be used with Groovy build scripts and all concepts still
+> apply but the exact syntax may differ.
 
 ### Applying the Plugin
 
@@ -47,9 +48,10 @@ The configuration `libConfiguration` contains all Java library dependency
 artifacts and the configuration `nativeConfiguration` includes the artifacts
 containing the native libraries for LWJGL for the current host.
 
-> **Note**: By default, a `main` target as defined above is automatically
-> registered when the `org.gradle.java` plugin is detected. To disable this
-> behavior, set the property `com.osmerion.lwjgl3.implicit-target` to `false`.
+> [!IMPORTANT]
+> By default, a `main` target as defined above is automatically registered when
+> the `org.gradle.java` plugin is detected. To disable this behavior, set the
+> property `com.osmerion.lwjgl3.implicit-target` to `false`.
 
 
 ### Modules
