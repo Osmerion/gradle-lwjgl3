@@ -1,10 +1,10 @@
 # LWJGL3 Gradle Plugin
 
-[![License](https://img.shields.io/badge/license-BSD-blue.svg?style=flat-square&label=License)](https://github.com/Osmerion/gradle-lwjgl3/blob/master/LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.gradle.lwjgl3/gradle-lwjgl3.svg?style=flat-square&label=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.osmerion.gradle.lwjgl3/gradle-lwjgl3)
-[![Gradle Plugin Portal](https://img.shields.io/maven-metadata/v.svg?style=flat-square&&label=Gradle%20Plugin%20Portal&logo=Gradle&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fcom%2Fosmerion%2Flwjgl3%2Fcom.osmerion.lwjgl3.gradle.plugin%2Fmaven-metadata.xml)](https://plugins.gradle.org/plugin/com.osmerion.lwjgl3)
-![Gradle](https://img.shields.io/badge/Gradle-7.6-green.svg?style=flat-square&color=1ba8cb&logo=Gradle)
-![Java](https://img.shields.io/badge/Java-8-green.svg?style=flat-square&color=b07219&logo=Java)
+[![License](https://img.shields.io/badge/license-BSD-blue.svg?style=for-the-badge&label=License)](https://github.com/Osmerion/gradle-lwjgl3/blob/master/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.gradle.lwjgl3/gradle-lwjgl3.svg?style=for-the-badge&label=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.osmerion.gradle.lwjgl3/gradle-lwjgl3)
+[![Gradle Plugin Portal](https://img.shields.io/maven-metadata/v.svg?style=for-the-badge&&label=Gradle%20Plugin%20Portal&logo=Gradle&metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fcom%2Fosmerion%2Flwjgl3%2Fcom.osmerion.lwjgl3.gradle.plugin%2Fmaven-metadata.xml)](https://plugins.gradle.org/plugin/com.osmerion.lwjgl3)
+![Gradle](https://img.shields.io/badge/Gradle-7.6-green.svg?style=for-the-badge&color=1ba8cb&logo=Gradle)
+![Java](https://img.shields.io/badge/Java-8-green.svg?style=for-the-badge&color=b07219&logo=Java)
 
 A Gradle plugin to simplify working with [LWJGL 3](https://lwjgl.org).
 
