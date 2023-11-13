@@ -53,30 +53,31 @@ publishing {
     }
     publications.withType<MavenPublication>().configureEach {
         pom {
-            name.set(project.name)
-            url.set("https://github.com/Osmerion/gradle-lwjgl3")
+            name = project.name
+            url = "https://github.com/Osmerion/gradle-lwjgl3"
+            packaging = "jar"
 
             licenses {
                 license {
-                    name.set("BSD-3-Clause")
-                    url.set("https://github.com/Osmerion/gradle-lwjgl3/blob/master/LICENSE")
-                    distribution.set("repo")
+                    name = "BSD-3-Clause"
+                    url = "https://github.com/Osmerion/gradle-lwjgl3/blob/master/LICENSE"
+                    distribution = "repo"
                 }
             }
 
             developers {
                 developer {
-                    id.set("TheMrMilchmann")
-                    name.set("Leon Linhart")
-                    email.set("themrmilchmann@gmail.com")
-                    url.set("https://github.com/TheMrMilchmann")
+                    id = "TheMrMilchmann"
+                    name = "Leon Linhart"
+                    email = "themrmilchmann@gmail.com"
+                    url = "https://github.com/TheMrMilchmann"
                 }
             }
 
             scm {
-                connection.set("scm:git:git://github.com/Osmerion/gradle-lwjgl3.git")
-                developerConnection.set("scm:git:git://github.com/Osmerion/gradle-lwjgl3.git")
-                url.set("https://github.com/Osmerion/gradle-lwjgl3.git")
+                connection = "scm:git:git://github.com/Osmerion/gradle-lwjgl3.git"
+                developerConnection = "scm:git:git://github.com/Osmerion/gradle-lwjgl3.git"
+                url = "https://github.com/Osmerion/gradle-lwjgl3.git"
             }
         }
     }

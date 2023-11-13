@@ -47,7 +47,7 @@ plugins {
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion = JavaLanguageVersion.of(21)
     }
 
     withJavadocJar()
@@ -60,15 +60,16 @@ kotlin {
     target {
         compilations.all {
             compilerOptions.configure {
-                apiVersion.set(KotlinVersion.KOTLIN_1_8)
-                languageVersion.set(KotlinVersion.KOTLIN_1_8)
+                apiVersion = KotlinVersion.KOTLIN_1_8
+                languageVersion = KotlinVersion.KOTLIN_1_8
+                jvmTarget = JvmTarget.JVM_1_8
             }
         }
 
         compilations.named("main") {
             compilerOptions.configure {
                 @Suppress("DEPRECATION")
-                apiVersion.set(KotlinVersion.KOTLIN_1_4)
+                apiVersion = KotlinVersion.KOTLIN_1_4
 
                 /*
                  * 1.4 is deprecated, but we need it to stay compatible with old
@@ -83,11 +84,11 @@ kotlin {
 
 gradlePlugin {
     compatibility {
-        minimumGradleVersion.set("7.6")
+        minimumGradleVersion = "7.6"
     }
 
-    website.set("https://github.com/Osmerion/gradle-lwjgl3")
-    vcsUrl.set("https://github.com/Osmerion/gradle-lwjgl3.git")
+    website = "https://github.com/Osmerion/gradle-lwjgl3"
+    vcsUrl = "https://github.com/Osmerion/gradle-lwjgl3.git"
 
     plugins {
         register("lwjgl") {
@@ -107,11 +108,7 @@ samWithReceiver {
 
 tasks {
     withType<JavaCompile>().configureEach {
-        options.release.set(8)
-    }
-
-    withType<KotlinCompile>().configureEach {
-        compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
+        options.release = 8
     }
 
     withType<Test>().configureEach {
@@ -119,7 +116,7 @@ tasks {
 
         @OptIn(ExperimentalToolchainSwitchesApi::class)
         javaLauncher.set(inferLauncher(default = project.javaToolchains.launcherFor {
-            languageVersion.set(JavaLanguageVersion.of(8))
+            languageVersion = JavaLanguageVersion.of(8)
         }))
 
         /*
@@ -146,8 +143,8 @@ tasks {
 }
 
 val emptyJar = tasks.register<Jar>("emptyJar") {
-    destinationDirectory.set(buildDir.resolve("emptyJar"))
-    archiveBaseName.set("com.osmerion.lwjgl3.gradle.plugin")
+    destinationDirectory = buildDir.resolve("emptyJar")
+    archiveBaseName = "com.osmerion.lwjgl3.gradle.plugin"
 }
 
 publishing {
@@ -159,10 +156,8 @@ publishing {
         }
 
         pom {
-            name.set("LWJGL3 Gradle Plugin")
-            description.set("A Gradle plugin to simplify working with LWJGL 3.")
-
-            packaging = "jar"
+            name = "LWJGL3 Gradle Plugin"
+            description = "A Gradle plugin to simplify working with LWJGL 3."
         }
     }
 }
