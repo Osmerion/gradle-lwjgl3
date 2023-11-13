@@ -53,6 +53,7 @@ class LWJGLPluginTest {
             @Suppress("UnstableApiUsage")
             if (javaVersion >= JavaVersion.VERSION_21) TODO()
 
+            add("8.4")
             add("8.3")
 
             @Suppress("UnstableApiUsage")
