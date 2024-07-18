@@ -6,7 +6,6 @@
         "gradle-wrapper"
     ],
     dependencyDashboard: false,
-    mode: "full",
     packageRules: [
         {
             description: "Update Gradle wrapper",
