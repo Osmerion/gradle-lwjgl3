@@ -42,4 +42,12 @@ plugins {
 
 rootProject.name = "gradle-lwjgl3"
 
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("buildDeps") {
+            from(files("./gradle/build.versions.toml"))
+        }
+    }
+}
+
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
