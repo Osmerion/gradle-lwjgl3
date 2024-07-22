@@ -32,7 +32,6 @@ import io.github.themrmilchmann.gradle.toolchainswitches.ExperimentalToolchainSw
 import io.github.themrmilchmann.gradle.toolchainswitches.inferLauncher
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     alias(buildDeps.plugins.binary.compatibility.validator)
@@ -57,28 +56,13 @@ java {
 kotlin {
     explicitApi()
 
-    target {
-        compilations.all {
-            compilerOptions.configure {
-                apiVersion = KotlinVersion.KOTLIN_1_8
-                languageVersion = KotlinVersion.KOTLIN_1_8
-                jvmTarget = JvmTarget.JVM_1_8
-            }
-        }
+    compilerOptions {
+        apiVersion = KotlinVersion.KOTLIN_1_8
+        languageVersion = KotlinVersion.KOTLIN_1_8
 
-        compilations.named("main") {
-            compilerOptions.configure {
-                @Suppress("DEPRECATION")
-                apiVersion = KotlinVersion.KOTLIN_1_4
+        jvmTarget = JvmTarget.JVM_1_8
 
-                /*
-                 * 1.4 is deprecated, but we need it to stay compatible with old
-                 * Gradle versions anyway. Thus, we suppress the compiler's
-                 * warning.
-                 */
-                freeCompilerArgs.add("-Xsuppress-version-warnings")
-            }
-        }
+        freeCompilerArgs.add("-Xjdk-release=1.8")
     }
 }
 
