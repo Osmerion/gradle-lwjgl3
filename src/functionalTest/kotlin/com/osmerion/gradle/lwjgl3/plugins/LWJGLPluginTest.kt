@@ -50,6 +50,14 @@ class LWJGLPluginTest {
             // See https://docs.gradle.org/current/userguide/compatibility.html
             val javaVersion = JavaVersion.current()
 
+            add("8.9")
+
+            @Suppress("UnstableApiUsage")
+            if (javaVersion >= JavaVersion.VERSION_22) return@buildList
+
+            add("8.8")
+            add("8.7")
+            add("8.6")
             add("8.5")
 
             @Suppress("UnstableApiUsage")
