@@ -160,6 +160,23 @@ public abstract class LWJGLTarget @Inject constructor(
     }
 
     /**
+     * Adds a platform configured to match Linux PowerPC 64 LE.
+     *
+     * @param name  the platform name (default `LinuxPPC64LE`)
+     *
+     * @since   0.3.0
+     */
+    @JvmOverloads
+    public fun linuxPPC64LE(name: String = "LinuxPPC64LE"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-linux-ppc64le")
+
+        match {
+            os.set(OperatingSystem.Linux)
+            arch.set(Architecture.PowerPC64LE)
+        }
+    }
+
+    /**
      * Adds a platform configured to match Linux RISC-V 64.
      *
      * @param name  the platform name (default `LinuxRISCV64`)

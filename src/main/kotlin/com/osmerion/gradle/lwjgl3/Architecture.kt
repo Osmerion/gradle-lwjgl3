@@ -72,6 +72,15 @@ public sealed class Architecture {
     }
 
     /**
+     * The PowerPC 64 LE architecture.
+     *
+     * @since   0.3.0
+     */
+    public object PowerPC64LE : Architecture() {
+        override fun matches(arch: String): Boolean = (arch == "ppc64le")
+    }
+
+    /**
      * The RISC-V 64 architecture
      *
      * @since   0.3.0
