@@ -137,7 +137,7 @@ LWJGL artifacts.
 lwjgl3 {
     targets.named("main") {
         group.set("org.lwjgl")
-        version.set("3.3.3")
+        version.set("3.3.4")
     }
 }
 ```
@@ -154,6 +154,7 @@ lwjgl3 {
 
 | LWJGL3 Gradle Plugin | Default LWJGL version |
 |----------------------|-----------------------|
+| 0.3.0                | 3.3.4                 |
 | 0.2.0                | 3.3.3                 |
 | 0.1.0                | 3.3.2                 |
 
