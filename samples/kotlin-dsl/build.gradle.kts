@@ -49,6 +49,7 @@ lwjgl3 {
             modules.add(LWJGL.OpenGL)
 
             linuxX64()
+            macosARM64()
             macosX64()
             windowsX64()
         }
