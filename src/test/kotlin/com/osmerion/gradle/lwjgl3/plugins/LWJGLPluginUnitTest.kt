@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2023 Leon Linhart,
+ * Copyright (c) 2021-2024 Leon Linhart,
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
