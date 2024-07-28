@@ -93,6 +93,8 @@ public class com/osmerion/gradle/lwjgl3/LWJGLExtension {
 
 public abstract class com/osmerion/gradle/lwjgl3/LWJGLTarget {
 	public fun <init> (Ljava/lang/String;Lorg/gradle/api/model/ObjectFactory;Lorg/gradle/api/artifacts/ConfigurationContainer;)V
+	public final fun freebsdX64 (Ljava/lang/String;)Lorg/gradle/api/NamedDomainObjectProvider;
+	public static synthetic fun freebsdX64$default (Lcom/osmerion/gradle/lwjgl3/LWJGLTarget;Ljava/lang/String;ILjava/lang/Object;)Lorg/gradle/api/NamedDomainObjectProvider;
 	public final fun getGroup ()Lorg/gradle/api/provider/Property;
 	public final fun getLibConfiguration ()Lorg/gradle/api/NamedDomainObjectProvider;
 	public final fun getModules ()Lorg/gradle/api/provider/SetProperty;

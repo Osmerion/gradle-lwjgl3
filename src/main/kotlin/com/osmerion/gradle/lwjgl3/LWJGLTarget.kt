@@ -126,6 +126,22 @@ public abstract class LWJGLTarget @Inject constructor(
         platforms.register(name, action)
 
     /**
+     * Adds a platform configured to match FreeBSD x64.
+     *
+     * @param name  the platform name (default `FreeBsdX64`)
+     *
+     * @since   0.3.0
+     */
+    public fun freebsdX64(name: String = "FreeBsdX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-freebsd")
+
+        match {
+            os.set(OperatingSystem.FreeBSD)
+            arch.set(Architecture.X86_64)
+        }
+    }
+
+    /**
      * Adds a platform configured to match Windows AArch32.
      *
      * @param name  the platform name (default `LinuxARM32`)

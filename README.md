@@ -100,6 +100,7 @@ lwjgl3 {
 ```
 
 The following predefined platforms are available:
+ - `freebsdX64`
  - `linuxARM32`, `linuxARM64`, `linuxPPC64LE`, `linuxRISCV64`, `linuxX64`
  - `macosARM64`, `macosX64`
  - `windowsARM64`, `windowsX64`, `windowsX86`
