@@ -232,6 +232,16 @@ public object LWJGL {
     )
 
     /**
+     * LWJGL - msdfgen bindings
+     *
+     * @since   0.3.0
+     */
+    @JvmStatic
+    public val Msdfgen: CharSequence = LWJGLModule(
+        artifactName = "lwjgl-msdfgen"
+    )
+
+    /**
      * LWJGL - NanoVG bindings
      *
      * @since   0.1.0
