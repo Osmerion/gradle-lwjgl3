@@ -160,6 +160,23 @@ public abstract class LWJGLTarget @Inject constructor(
     }
 
     /**
+     * Adds a platform configured to match Linux RISC-V 64.
+     *
+     * @param name  the platform name (default `LinuxRISCV64`)
+     *
+     * @since   0.3.0
+     */
+    @JvmOverloads
+    public fun linuxRISCV64(name: String = "LinuxRISCV64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
+        artifactClassifier.convention("natives-linux-riscv64")
+
+        match {
+            os.set(OperatingSystem.Linux)
+            arch.set(Architecture.RISCV64)
+        }
+    }
+
+    /**
      * Adds a platform configured to match Linux x64.
      *
      * @param name  the platform name (default `LinuxX64`)

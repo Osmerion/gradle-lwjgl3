@@ -72,6 +72,15 @@ public sealed class Architecture {
     }
 
     /**
+     * The RISC-V 64 architecture
+     *
+     * @since   0.3.0
+     */
+    public object RISCV64 : Architecture() {
+        override fun matches(arch: String): Boolean = (arch == "riscv64")
+    }
+
+    /**
      * The x86 architecture.
      *
      * @since   0.1.0
