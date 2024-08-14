@@ -68,7 +68,7 @@ kotlin {
 
 gradlePlugin {
     compatibility {
-        minimumGradleVersion = "7.6"
+        minimumGradleVersion = "8.0"
     }
 
     website = "https://github.com/Osmerion/gradle-lwjgl3"
