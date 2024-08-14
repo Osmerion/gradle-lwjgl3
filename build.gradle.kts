@@ -124,6 +124,10 @@ tasks {
             systemProperty("junit.jupiter.execution.parallel.mode.default", defaultExecutionMode.get())
         }
     }
+
+    validatePlugins {
+        enableStricterValidation = true
+    }
 }
 
 val emptyJar = tasks.register<Jar>("emptyJar") {
