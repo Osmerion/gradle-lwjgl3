@@ -35,13 +35,13 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
     alias(buildDeps.plugins.binary.compatibility.validator)
-    alias(buildDeps.plugins.gradle.plugin.functional.test)
-    alias(buildDeps.plugins.gradle.plugin.unit.test)
     alias(buildDeps.plugins.gradle.toolchain.switches)
+    alias(buildDeps.plugins.java.gradle.plugin)
     alias(buildDeps.plugins.kotlin.jvm)
     alias(buildDeps.plugins.kotlin.plugin.samwithreceiver)
     alias(buildDeps.plugins.plugin.publish)
     id("com.osmerion.maven-publish-conventions")
+    `jvm-test-suite`
 }
 
 java {
@@ -90,14 +90,43 @@ samWithReceiver {
     annotation("org.gradle.api.HasImplicitReceiver")
 }
 
+@Suppress("UnstableApiUsage")
+testing {
+    suites {
+        withType<JvmTestSuite>().configureEach {
+            useJUnitJupiter()
+
+            dependencies {
+                implementation(platform(buildDeps.junit.bom))
+                implementation(buildDeps.junit.jupiter.api)
+                implementation(buildDeps.junit.jupiter.params)
+                runtimeOnly(buildDeps.junit.jupiter.engine)
+            }
+        }
+
+        val test = named("test")
+
+        register<JvmTestSuite>("functionalTest") {
+            dependencies {
+                implementation(gradleTestKit())
+                runtimeOnly(layout.files(tasks.named("pluginUnderTestMetadata")))
+            }
+
+            targets.configureEach {
+                testTask.configure {
+                    shouldRunAfter(test)
+                }
+            }
+        }
+    }
+}
+
 tasks {
     withType<JavaCompile>().configureEach {
         options.release = 8
     }
 
     withType<Test>().configureEach {
-        useJUnitPlatform()
-
         @OptIn(ExperimentalToolchainSwitchesApi::class)
         javaLauncher.set(inferLauncher(default = project.javaToolchains.launcherFor {
             languageVersion = JavaLanguageVersion.of(8)
@@ -152,16 +181,4 @@ publishing {
 
 dependencies {
     compileOnlyApi(kotlin("stdlib"))
-
-    testImplementation(kotlin("stdlib"))
-    testImplementation(platform(buildDeps.junit.bom))
-    testImplementation(buildDeps.junit.jupiter.api)
-    testImplementation(buildDeps.junit.jupiter.params)
-    testRuntimeOnly(buildDeps.junit.jupiter.engine)
-
-    functionalTestImplementation(kotlin("stdlib"))
-    functionalTestImplementation(platform(buildDeps.junit.bom))
-    functionalTestImplementation(buildDeps.junit.jupiter.api)
-    functionalTestImplementation(buildDeps.junit.jupiter.params)
-    functionalTestRuntimeOnly(buildDeps.junit.jupiter.engine)
 }
