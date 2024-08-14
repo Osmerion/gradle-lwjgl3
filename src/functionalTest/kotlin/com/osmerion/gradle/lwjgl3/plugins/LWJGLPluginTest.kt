@@ -52,7 +52,6 @@ class LWJGLPluginTest {
 
             add("8.9")
 
-            @Suppress("UnstableApiUsage")
             if (javaVersion >= JavaVersion.VERSION_22) return@buildList
 
             add("8.8")
@@ -60,13 +59,11 @@ class LWJGLPluginTest {
             add("8.6")
             add("8.5")
 
-            @Suppress("UnstableApiUsage")
             if (javaVersion >= JavaVersion.VERSION_21) return@buildList
 
             add("8.4")
             add("8.3")
 
-            @Suppress("UnstableApiUsage")
             if (javaVersion >= JavaVersion.VERSION_20) return@buildList
 
             add("8.2.1")
