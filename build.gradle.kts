@@ -158,6 +158,11 @@ tasks {
         }
     }
 
+    check {
+        @Suppress("UnstableApiUsage")
+        dependsOn(testing.suites.named("functionalTest"))
+    }
+
     validatePlugins {
         enableStricterValidation = true
     }
