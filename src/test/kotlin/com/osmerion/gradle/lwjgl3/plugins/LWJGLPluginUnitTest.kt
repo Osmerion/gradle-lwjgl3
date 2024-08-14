@@ -55,9 +55,9 @@ class LWJGLPluginUnitTest {
         project.pluginManager.apply(LWJGLPlugin::class.java)
         val lwjgl3 = project.extensions.getByType(LWJGLExtension::class.java)
 
-        assertEquals(0, lwjgl3.targets.size)
+        assertEquals(0, lwjgl3.targets.asMap.size)
         project.pluginManager.apply(JavaPlugin::class.java)
-        assertEquals(0, lwjgl3.targets.size)
+        assertEquals(0, lwjgl3.targets.asMap.size)
     }
 
     @Test
@@ -69,9 +69,9 @@ class LWJGLPluginUnitTest {
         project.pluginManager.apply(LWJGLPlugin::class.java)
         val lwjgl3 = project.extensions.getByType(LWJGLExtension::class.java)
 
-        assertEquals(0, lwjgl3.targets.size)
+        assertEquals(0, lwjgl3.targets.asMap.size)
         project.pluginManager.apply(JavaPlugin::class.java)
-        assertEquals(1, lwjgl3.targets.size)
+        assertEquals(1, lwjgl3.targets.asMap.size)
     }
 
     @Test
@@ -81,9 +81,9 @@ class LWJGLPluginUnitTest {
 
         val lwjgl3 = project.extensions.getByType(LWJGLExtension::class.java)
 
-        assertEquals(0, lwjgl3.targets.size)
+        assertEquals(0, lwjgl3.targets.asMap.size)
         project.pluginManager.apply(JavaPlugin::class.java)
-        assertEquals(1, lwjgl3.targets.size)
+        assertEquals(1, lwjgl3.targets.asMap.size)
     }
 
 }
