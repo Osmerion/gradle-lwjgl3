@@ -104,7 +104,7 @@ testing {
             }
         }
 
-        val test = named("test") {
+        val test = named<JvmTestSuite>("test") {
             dependencies {
                 implementation(gradleTestKit())
             }
