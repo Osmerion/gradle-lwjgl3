@@ -44,7 +44,7 @@ rootProject.name = "gradle-lwjgl3"
 
 dependencyResolutionManagement {
     versionCatalogs {
-        create("buildDeps") {
+        register("buildDeps") {
             from(files("./gradle/build.versions.toml"))
         }
     }
