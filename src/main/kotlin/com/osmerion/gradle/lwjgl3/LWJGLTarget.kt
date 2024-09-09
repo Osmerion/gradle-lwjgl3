@@ -51,6 +51,7 @@ import javax.inject.Inject
  */
 public abstract class LWJGLTarget @Inject constructor(
     public val name: String,
+    lwjglExtension: LWJGLExtension,
     objectFactory: ObjectFactory,
     configurations: ConfigurationContainer
 ) {
@@ -58,7 +59,7 @@ public abstract class LWJGLTarget @Inject constructor(
     /**
      * The group name of the GAV coordinates for the LWJGL artifacts.
      *
-     * Defaults to [LWJGLConstants.DEFAULT_GROUP_NAME].
+     * Defaults to [LWJGLExtension.group].
      *
      * @since   0.1.0
      */
@@ -67,7 +68,7 @@ public abstract class LWJGLTarget @Inject constructor(
     /**
      * The version of the GAV coordinates for the LWJGL artifacts.
      *
-     * Defaults to [LWJGLConstants.DEFAULT_VERSION].
+     * Defaults to [LWJGLExtension.version].
      *
      * @since   0.1.0
      */
@@ -82,10 +83,10 @@ public abstract class LWJGLTarget @Inject constructor(
 
     init {
         group.finalizeValueOnRead()
-        group.convention(LWJGLConstants.DEFAULT_GROUP_NAME)
+        group.convention(lwjglExtension.group)
 
         version.finalizeValueOnRead()
-        version.convention(LWJGLConstants.DEFAULT_VERSION)
+        version.convention(lwjglExtension.version)
 
         modules.finalizeValueOnRead()
     }

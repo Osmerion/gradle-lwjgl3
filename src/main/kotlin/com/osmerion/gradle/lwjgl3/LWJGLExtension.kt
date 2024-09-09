@@ -32,6 +32,7 @@ package com.osmerion.gradle.lwjgl3
 
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
 import javax.inject.Inject
 
 /**
@@ -44,10 +45,38 @@ public open class LWJGLExtension @Inject internal constructor(
 ) {
 
     /**
+     * The group name of the GAV coordinates for the LWJGL artifacts.
+     *
+     * Defaults to [LWJGLConstants.DEFAULT_GROUP_NAME].
+     *
+     * @since   0.4.0
+     */
+    public val group: Property<String> = objectFactory.property(String::class.java)
+
+    /**
+     * The version of the GAV coordinates for the LWJGL artifacts.
+     *
+     * Defaults to [LWJGLConstants.DEFAULT_VERSION].
+     *
+     * @since   0.4.0
+     */
+    public val version: Property<String> = objectFactory.property(String::class.java)
+
+    /**
      * Returns the targets of this project.
      *
      * @since   0.1.0
      */
-    public val targets: NamedDomainObjectContainer<LWJGLTarget> = objectFactory.domainObjectContainer(LWJGLTarget::class.java)
+    public val targets: NamedDomainObjectContainer<LWJGLTarget> = objectFactory.domainObjectContainer(LWJGLTarget::class.java) {
+        objectFactory.newInstance(LWJGLTarget::class.java, it)
+    }
+
+    init {
+        group.finalizeValueOnRead()
+        group.convention(LWJGLConstants.DEFAULT_GROUP_NAME)
+
+        version.finalizeValueOnRead()
+        version.convention(LWJGLConstants.DEFAULT_VERSION)
+    }
 
 }
