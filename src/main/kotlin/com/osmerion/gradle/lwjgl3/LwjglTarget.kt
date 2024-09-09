@@ -45,13 +45,13 @@ import javax.inject.Inject
  * A _target_ serves as abstraction to handle multiple LWJGL setups (for
  * example, in different source sets) in a single Gradle project.
  *
- * @see LWJGLExtension.targets
+ * @see LwjglExtension.targets
  *
  * @since   0.1.0
  */
-public abstract class LWJGLTarget @Inject constructor(
+public abstract class LwjglTarget @Inject constructor(
     public val name: String,
-    lwjglExtension: LWJGLExtension,
+    lwjglExtension: LwjglExtension,
     objectFactory: ObjectFactory,
     configurations: ConfigurationContainer
 ) {
@@ -59,7 +59,7 @@ public abstract class LWJGLTarget @Inject constructor(
     /**
      * The group name of the GAV coordinates for the LWJGL artifacts.
      *
-     * Defaults to [LWJGLExtension.group].
+     * Defaults to [LwjglExtension.group].
      *
      * @since   0.1.0
      */
@@ -68,7 +68,7 @@ public abstract class LWJGLTarget @Inject constructor(
     /**
      * The version of the GAV coordinates for the LWJGL artifacts.
      *
-     * Defaults to [LWJGLExtension.version].
+     * Defaults to [LwjglExtension.version].
      *
      * @since   0.1.0
      */
@@ -112,7 +112,7 @@ public abstract class LWJGLTarget @Inject constructor(
      * @since   0.1.0
      */
     public val platforms: NamedDomainObjectContainer<NativePlatform> = objectFactory.domainObjectContainer(NativePlatform::class.java) { name ->
-        objectFactory.newInstance(NativePlatform::class.java, name, this@LWJGLTarget.name)
+        objectFactory.newInstance(NativePlatform::class.java, name, this@LwjglTarget.name)
     }
 
     /**

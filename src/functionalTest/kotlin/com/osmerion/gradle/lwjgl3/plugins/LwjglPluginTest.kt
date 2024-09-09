@@ -41,7 +41,7 @@ import java.nio.file.Paths
 import kotlin.io.path.ExperimentalPathApi
 import kotlin.io.path.copyToRecursively
 
-class LWJGLPluginTest {
+class LwjglPluginTest {
 
     private companion object {
 

@@ -30,44 +30,53 @@
  */
 package com.osmerion.gradle.lwjgl3
 
+import org.gradle.api.NamedDomainObjectContainer
+import org.gradle.api.model.ObjectFactory
+import org.gradle.api.provider.Property
+import javax.inject.Inject
+
 /**
- * Constants used by this version of the LWJGL3 Gradle plugin.
+ * The LWJGL project extension.
  *
  * @since   0.1.0
  */
-/*
- * We're not actually declaring "const" elements because they are not
- * necessarily constant across versions of the plugin.
- */
-@Suppress("MayBeConstant")
-public object LWJGLConstants {
+public open class LwjglExtension @Inject internal constructor(
+    objectFactory: ObjectFactory
+) {
 
     /**
-     * The default group name of the coordinates for LWJGL artifacts.
+     * The group name of the GAV coordinates for the LWJGL artifacts.
      *
-     * @see LWJGLTarget.group
+     * Defaults to [LwjglConstants.DEFAULT_GROUP_NAME].
+     *
+     * @since   0.4.0
+     */
+    public val group: Property<String> = objectFactory.property(String::class.java)
+
+    /**
+     * The version of the GAV coordinates for the LWJGL artifacts.
+     *
+     * Defaults to [LwjglConstants.DEFAULT_VERSION].
+     *
+     * @since   0.4.0
+     */
+    public val version: Property<String> = objectFactory.property(String::class.java)
+
+    /**
+     * Returns the targets of this project.
      *
      * @since   0.1.0
      */
-    public val DEFAULT_GROUP_NAME: String = "org.lwjgl"
+    public val targets: NamedDomainObjectContainer<LwjglTarget> = objectFactory.domainObjectContainer(LwjglTarget::class.java) {
+        objectFactory.newInstance(LwjglTarget::class.java, it, this)
+    }
 
-    /**
-     * The default LWJGL version.
-     *
-     * @see LWJGLTarget.version
-     *
-     * @since   0.1.0
-     */
-    public val DEFAULT_VERSION: String = "3.3.4"
+    init {
+        group.finalizeValueOnRead()
+        group.convention(LwjglConstants.DEFAULT_GROUP_NAME)
 
-    /**
-     * The name of the property that can be used to configure if the plugin
-     * should create an implicit target (in some circumstances).
-     *
-     * The value of the property should either be `true` or `false` if set.
-     *
-     * @since   0.1.0
-     */
-    public val PROPERTY_IMPLICIT_TARGET: String = "com.osmerion.lwjgl3.implicit-target"
+        version.finalizeValueOnRead()
+        version.convention(LwjglConstants.DEFAULT_VERSION)
+    }
 
 }

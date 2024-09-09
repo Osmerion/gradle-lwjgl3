@@ -30,8 +30,8 @@
  */
 package com.osmerion.gradle.lwjgl3.plugins
 
-import com.osmerion.gradle.lwjgl3.LWJGLConstants
-import com.osmerion.gradle.lwjgl3.LWJGLExtension
+import com.osmerion.gradle.lwjgl3.LwjglConstants
+import com.osmerion.gradle.lwjgl3.LwjglExtension
 import com.osmerion.gradle.lwjgl3.internal.applyTo
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -42,10 +42,10 @@ import org.gradle.api.plugins.JavaPlugin
  *
  * @since   0.1.0
  */
-public class LWJGLPlugin : Plugin<Project> {
+public class LwjglPlugin : Plugin<Project> {
 
     override fun apply(target: Project): Unit = applyTo(target) {
-        val lwjgl3 = extensions.create("lwjgl3", LWJGLExtension::class.java)
+        val lwjgl3 = extensions.create("lwjgl3", LwjglExtension::class.java)
 
         lwjgl3.targets.all target@{
             libConfiguration.get().dependencies.addAllLater(provider {
@@ -97,7 +97,7 @@ public class LWJGLPlugin : Plugin<Project> {
             }
         }
 
-        val implicitTarget = providers.gradleProperty(LWJGLConstants.PROPERTY_IMPLICIT_TARGET)
+        val implicitTarget = providers.gradleProperty(LwjglConstants.PROPERTY_IMPLICIT_TARGET)
 
         pluginManager.withPlugin("org.gradle.java") {
             if (implicitTarget.map(String::toBoolean).orNull != false) {

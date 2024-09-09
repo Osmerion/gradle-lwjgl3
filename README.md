@@ -62,7 +62,7 @@ libraries. Modules can be added to a target as follows:
 ```kotlin
 lwjgl3 {
     targets.named("main") {
-        modules.add(LWJGL.Core)
+        modules.add(Lwjgl.Core)
     }
 }
 ```

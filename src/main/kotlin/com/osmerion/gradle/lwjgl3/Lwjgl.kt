@@ -35,7 +35,7 @@ package com.osmerion.gradle.lwjgl3
  *
  * @since   0.1.0
  */
-public object LWJGL {
+public object Lwjgl {
 
     private data class LWJGLModule(
         val artifactName: String

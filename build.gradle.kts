@@ -81,7 +81,7 @@ gradlePlugin {
             description = "A Gradle plugin to simplify working with LWJGL 3."
             tags.addAll("dependency-management", "lwjgl", "lwjgl3")
 
-            implementationClass = "com.osmerion.gradle.lwjgl3.plugins.LWJGLPlugin"
+            implementationClass = "com.osmerion.gradle.lwjgl3.plugins.LwjglPlugin"
         }
     }
 }

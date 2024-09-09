@@ -30,14 +30,14 @@
  */
 package com.osmerion.gradle.lwjgl3.plugins
 
-import com.osmerion.gradle.lwjgl3.LWJGLExtension
+import com.osmerion.gradle.lwjgl3.LwjglExtension
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
-class LWJGLPluginUnitTest {
+class LwjglPluginUnitTest {
 
     /*
      * Disabled for now because there is no way to set Gradle properties when
@@ -52,8 +52,8 @@ class LWJGLPluginUnitTest {
         // TODO set com.osmerion.lwjgl3.implicit-target
         val project = ProjectBuilder.builder().build()
 
-        project.pluginManager.apply(LWJGLPlugin::class.java)
-        val lwjgl3 = project.extensions.getByType(LWJGLExtension::class.java)
+        project.pluginManager.apply(LwjglPlugin::class.java)
+        val lwjgl3 = project.extensions.getByType(LwjglExtension::class.java)
 
         assertEquals(0, lwjgl3.targets.asMap.size)
         project.pluginManager.apply(JavaPlugin::class.java)
@@ -66,8 +66,8 @@ class LWJGLPluginUnitTest {
         // TODO set com.osmerion.lwjgl3.implicit-target
         val project = ProjectBuilder.builder().build()
 
-        project.pluginManager.apply(LWJGLPlugin::class.java)
-        val lwjgl3 = project.extensions.getByType(LWJGLExtension::class.java)
+        project.pluginManager.apply(LwjglPlugin::class.java)
+        val lwjgl3 = project.extensions.getByType(LwjglExtension::class.java)
 
         assertEquals(0, lwjgl3.targets.asMap.size)
         project.pluginManager.apply(JavaPlugin::class.java)
@@ -77,9 +77,9 @@ class LWJGLPluginUnitTest {
     @Test
     fun `Test implicit main target enabled by default`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply(LWJGLPlugin::class.java)
+        project.pluginManager.apply(LwjglPlugin::class.java)
 
-        val lwjgl3 = project.extensions.getByType(LWJGLExtension::class.java)
+        val lwjgl3 = project.extensions.getByType(LwjglExtension::class.java)
 
         assertEquals(0, lwjgl3.targets.asMap.size)
         project.pluginManager.apply(JavaPlugin::class.java)

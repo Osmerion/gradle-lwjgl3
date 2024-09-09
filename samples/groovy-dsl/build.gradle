@@ -44,9 +44,9 @@ java {
 lwjgl3 {
     targets {
         named("main") {
-            modules.add(LWJGL.Core)
-            modules.add(LWJGL.GLFW)
-            modules.add(LWJGL.OpenGL)
+            modules.add(Lwjgl.Core)
+            modules.add(Lwjgl.GLFW)
+            modules.add(Lwjgl.OpenGL)
 
             linuxX64()
             macosARM64()
