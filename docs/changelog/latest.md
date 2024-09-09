@@ -1,15 +1,16 @@
-### 0.3.0
+### 0.4.0
 
-_Released 2024 Jul 28_
+_Released 2024 Sep 09_
 
 #### Improvements
 
-- Added a predefined accessor for the msdfgen bindings. [[GH-24]](https://github.com/Osmerion/gradle-lwjgl3/issues/24)
-- Added platform and architecture presets for FreeBSD x64.
-- Added platform and architecture presets for RISC-V 64.
-- Added platform and architecture presets for PowerPC 64 LE.
-- Updated the default LWJGL version to 3.3.4. [[GH-23]](https://github.com/Osmerion/gradle-lwjgl3/issues/23)
+- Added support for setting the LWJGL group and version in the `lwjgl3` project
+  extension.
+    - If specified, targets will now inherit the group and version from the
+      `lwjgl3` extension.
 
-#### Fixes
+#### Breaking Changes
 
-- Corrected invalid GitHub links in published POM.
+- Updated the minimum required Gradle version to 8.0 (from 7.6).
+- `LWJGL` has been replaced with `Lwjgl` in class names to follow Kotlin naming
+  conventions.

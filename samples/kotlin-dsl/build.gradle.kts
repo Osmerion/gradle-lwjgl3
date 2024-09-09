@@ -32,7 +32,7 @@ import com.osmerion.gradle.lwjgl3.*
 
 plugins {
     java
-    id("com.osmerion.lwjgl3") version "0.3.0"
+    id("com.osmerion.lwjgl3") version "0.4.0"
 }
 
 java {

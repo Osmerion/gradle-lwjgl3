@@ -1,3 +1,23 @@
+### 0.4.0
+
+_Released 2024 Sep 09_
+
+#### Improvements
+
+- Added support for setting the LWJGL group and version in the `lwjgl3` project
+  extension.
+    - If specified, targets will now inherit the group and version from the
+      `lwjgl3` extension.
+
+#### Breaking Changes
+
+- Updated the minimum required Gradle version to 8.0 (from 7.6).
+- `LWJGL` has been replaced with `Lwjgl` in class names to follow Kotlin naming
+  conventions.
+
+
+---
+
 ### 0.3.0
 
 _Released 2024 Jul 28_
