@@ -67,7 +67,7 @@ lwjgl3 {
 }
 ```
 
-Predefined accessors for known LWJGL modules are available in the `LWJGL` class.
+Predefined accessors for known LWJGL modules are available in the `Lwjgl` class.
 
 #### Custom Modules
 
