@@ -50,6 +50,11 @@ class LwjglPluginTest {
             // See https://docs.gradle.org/current/userguide/compatibility.html
             val javaVersion = JavaVersion.current()
 
+            add("8.11")
+            add("8.10.2")
+
+            if (javaVersion >= JavaVersion.VERSION_23) return@buildList
+
             add("8.9")
 
             if (javaVersion >= JavaVersion.VERSION_22) return@buildList
