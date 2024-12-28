@@ -58,7 +58,7 @@ public object LwjglConstants {
      *
      * @since   0.1.0
      */
-    public val DEFAULT_VERSION: String = "3.3.4"
+    public val DEFAULT_VERSION: String = "3.3.5"
 
     /**
      * The name of the property that can be used to configure if the plugin
