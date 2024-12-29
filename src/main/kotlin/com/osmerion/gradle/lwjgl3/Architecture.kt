@@ -51,6 +51,14 @@ public fun Architecture(matches: Predicate<String>): Architecture =
  */
 public sealed class Architecture {
 
+    internal abstract val artifactClassifierComponent: String?
+
+    internal companion object {
+
+        val KNOWN_ARCHITECTURES = listOf(ARM32, ARM64, PowerPC64LE, RISCV64, X86, X86_64)
+
+    }
+
     internal abstract fun matches(arch: String): Boolean
 
     /**
@@ -59,6 +67,7 @@ public sealed class Architecture {
      * @since   0.1.0
      */
     public object ARM32 : Architecture() {
+        override val artifactClassifierComponent: String get() = "arm32"
         override fun matches(arch: String): Boolean = (arch == "arm")
     }
 
@@ -68,6 +77,7 @@ public sealed class Architecture {
      * @since   0.1.0
      */
     public object ARM64 : Architecture() {
+        override val artifactClassifierComponent: String get() = "arm64"
         override fun matches(arch: String): Boolean = (arch == "aarch64" || arch == "armv8")
     }
 
@@ -77,6 +87,7 @@ public sealed class Architecture {
      * @since   0.3.0
      */
     public object PowerPC64LE : Architecture() {
+        override val artifactClassifierComponent: String get() = "ppc64le"
         override fun matches(arch: String): Boolean = (arch == "ppc64le")
     }
 
@@ -86,6 +97,7 @@ public sealed class Architecture {
      * @since   0.3.0
      */
     public object RISCV64 : Architecture() {
+        override val artifactClassifierComponent: String get() = "riscv64"
         override fun matches(arch: String): Boolean = (arch == "riscv64")
     }
 
@@ -95,6 +107,7 @@ public sealed class Architecture {
      * @since   0.1.0
      */
     public object X86 : Architecture() {
+        override val artifactClassifierComponent: String get() = "x86"
         override fun matches(arch: String): Boolean = (arch == "i386") || (arch == "x86")
     }
 
@@ -105,10 +118,12 @@ public sealed class Architecture {
      */
     @Suppress("ClassName")
     public object X86_64 : Architecture() {
+        override val artifactClassifierComponent: String? get() = null
         override fun matches(arch: String): Boolean = (arch == "x86_64") || (arch == "amd64")
     }
 
     internal class Custom(private val matches: Predicate<String>) : Architecture() {
+        override val artifactClassifierComponent: String = error("This should never be called")
         override fun matches(arch: String): Boolean = matches.test(arch)
     }
 

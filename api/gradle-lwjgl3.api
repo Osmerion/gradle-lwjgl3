@@ -142,6 +142,7 @@ public class com/osmerion/gradle/lwjgl3/NativePlatform {
 	public final fun getArtifactClassifier ()Lorg/gradle/api/provider/Property;
 	public final fun getConfiguration ()Lorg/gradle/api/NamedDomainObjectProvider;
 	public final fun getName ()Ljava/lang/String;
+	public final fun isImplicitHostPlatform ()Z
 	public final fun match (Lorg/gradle/api/Action;)V
 }
 

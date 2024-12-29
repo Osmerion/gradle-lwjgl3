@@ -51,6 +51,14 @@ public fun OperatingSystem(matches: Predicate<String>): OperatingSystem =
  */
 public sealed class OperatingSystem {
 
+    internal abstract val artifactClassifierComponent: String
+
+    internal companion object {
+
+        val KNOWN_OPERATING_SYSTEMS = listOf(FreeBSD, Linux, MacOS, Windows)
+
+    }
+
     internal abstract fun matches(osName: String): Boolean
 
     /**
@@ -59,6 +67,7 @@ public sealed class OperatingSystem {
      * @since   0.1.0
      */
     public object FreeBSD : OperatingSystem() {
+        override val artifactClassifierComponent: String get() = "freebsd"
         override fun matches(osName: String): Boolean = osName.contains("freebsd", ignoreCase = true)
     }
 
@@ -68,6 +77,7 @@ public sealed class OperatingSystem {
      * @since   0.1.0
      */
     public object Linux : OperatingSystem() {
+        override val artifactClassifierComponent: String get() = "linux"
         override fun matches(osName: String): Boolean = osName.contains("linux", ignoreCase = true)
     }
 
@@ -77,7 +87,7 @@ public sealed class OperatingSystem {
      * @since   0.1.0
      */
     public object MacOS : OperatingSystem() {
-
+        override val artifactClassifierComponent: String get() = "macos"
         override fun matches(osName: String): Boolean =
             osName.contains("mac os x", ignoreCase = true)
                 || osName.contains("darwin", ignoreCase = true)
@@ -91,10 +101,14 @@ public sealed class OperatingSystem {
      * @since   0.1.0
      */
     public object Windows : OperatingSystem() {
+        override val artifactClassifierComponent: String get() = "windows"
         override fun matches(osName: String): Boolean = osName.contains("windows", ignoreCase = true)
     }
 
-    internal class Custom(private val matches: Predicate<String>) : OperatingSystem() {
+    internal class Custom(
+        private val matches: Predicate<String>
+    ) : OperatingSystem() {
+        override val artifactClassifierComponent: String = error("This should never be called")
         override fun matches(osName: String): Boolean = matches.test(osName)
     }
 

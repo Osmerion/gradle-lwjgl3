@@ -30,9 +30,10 @@
  */
 package com.osmerion.gradle.lwjgl3.plugins
 
-import com.osmerion.gradle.lwjgl3.LwjglConstants
-import com.osmerion.gradle.lwjgl3.LwjglExtension
+import com.osmerion.gradle.lwjgl3.*
 import com.osmerion.gradle.lwjgl3.internal.applyTo
+import com.osmerion.gradle.lwjgl3.internal.deriveNativesArtifactClassifier
+import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.plugins.JavaPlugin
@@ -64,16 +65,23 @@ public class LwjglPlugin : Plugin<Project> {
                 }
             })
 
-            platforms.all platform@{
-                nativesConfiguration.get().dependencies.addLater(provider {
-                    if (this@platform.matcher.matchesCurrent) {
-                        @Suppress("UnstableApiUsage")
-                        dependencyFactory.create(files(this@platform.configuration))
-                    } else {
-                        null
+            platforms.registerImplicitHostPlatform()
+
+            nativesConfiguration.get().dependencies.addLater(provider {
+                var applicablePlatforms = platforms
+                    .filter { it.matcher.matchesCurrent }
+
+                if (applicablePlatforms.size > 1) {
+                    applicablePlatforms = applicablePlatforms.filterNot(NativePlatform::isImplicitHostPlatform)
+
+                    if (applicablePlatforms.size > 1) {
+                        throw IllegalStateException("Multiple native platforms are applicable: ${applicablePlatforms.joinToString { it.name }}")
                     }
-                })
-            }
+                }
+
+                @Suppress("UnstableApiUsage")
+                applicablePlatforms.singleOrNull()?.let { dependencyFactory.create(files(it.configuration)) }
+            })
 
             platforms.configureEach platform@{
                 configurationImpl.configure {
@@ -110,6 +118,28 @@ public class LwjglPlugin : Plugin<Project> {
                 configurations.named(JavaPlugin.RUNTIME_ONLY_CONFIGURATION_NAME) {
                     extendsFrom(lwjgl3MainTarget.get().nativesConfiguration.get())
                 }
+            }
+        }
+    }
+
+    private fun NamedDomainObjectContainer<NativePlatform>.registerImplicitHostPlatform() {
+        val osName = System.getProperty("os.name")
+        val osArch = System.getProperty("os.arch")
+
+        val os = OperatingSystem.KNOWN_OPERATING_SYSTEMS
+            .firstOrNull { it.matches(osName) } ?: return
+
+        val arch = Architecture.KNOWN_ARCHITECTURES
+            .firstOrNull { it.matches(osArch) } ?: return
+
+        register("host") {
+            artifactClassifier.convention(deriveNativesArtifactClassifier(os, arch))
+
+            isImplicitHostPlatform = true
+
+            match {
+                this.os.set(os)
+                this.arch.set(arch)
             }
         }
     }

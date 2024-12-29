@@ -86,6 +86,16 @@ public open class NativePlatform @Inject internal constructor(
         artifactClassifier.finalizeValueOnRead()
     }
 
+    /**
+     * Whether this platform was implicitly created to ease development on the host platform.
+     *
+     * If this is `true`, the platform should not be considered when building distributions.
+     *
+     * @since   0.5.0
+     */
+    public var isImplicitHostPlatform: Boolean = false
+        internal set
+
     internal val matcher: PlatformMatcher = project.objects.newInstance(PlatformMatcher::class.java)
 
     /**
