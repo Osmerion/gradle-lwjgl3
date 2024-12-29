@@ -133,6 +133,7 @@ public abstract class LwjglTarget @Inject constructor(
      *
      * @since   0.3.0
      */
+    @JvmOverloads
     public fun freebsdX64(name: String = "FreeBsdX64"): NamedDomainObjectProvider<NativePlatform> = platform(name) {
         artifactClassifier.convention("natives-freebsd")
 
