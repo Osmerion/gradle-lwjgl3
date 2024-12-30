@@ -36,6 +36,7 @@ import com.osmerion.gradle.lwjgl3.internal.deriveNativesArtifactClassifier
 import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.logging.Logging
 import org.gradle.api.plugins.JavaPlugin
 
 /**
@@ -44,6 +45,10 @@ import org.gradle.api.plugins.JavaPlugin
  * @since   0.1.0
  */
 public class LwjglPlugin : Plugin<Project> {
+
+    private companion object {
+        private val log = Logging.getLogger(LwjglPlugin::class.java)
+    }
 
     override fun apply(target: Project): Unit = applyTo(target) {
         val lwjgl3 = extensions.create("lwjgl3", LwjglExtension::class.java)
@@ -65,7 +70,11 @@ public class LwjglPlugin : Plugin<Project> {
                 }
             })
 
-            platforms.registerImplicitHostPlatform()
+            val implicitHostPlatform = providers.gradleProperty(LwjglConstants.PROPERTY_IMPLICIT_HOST_PLATFORM)
+            if (implicitHostPlatform.map(String::toBoolean).orNull != false) {
+                log.debug("Registering implicit host platform")
+                platforms.registerImplicitHostPlatform()
+            }
 
             nativesConfiguration.get().dependencies.addLater(provider {
                 var applicablePlatforms = platforms

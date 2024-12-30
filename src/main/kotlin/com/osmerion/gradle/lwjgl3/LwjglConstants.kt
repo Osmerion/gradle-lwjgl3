@@ -70,4 +70,16 @@ public object LwjglConstants {
      */
     public val PROPERTY_IMPLICIT_TARGET: String = "com.osmerion.lwjgl3.implicit-target"
 
+    /**
+     * The name of the property that can be used to configure if the plugin
+     * should create an implicit host platform. (Regardless of the property's
+     * value, the host platform will only be created if the current platform is
+     * supported.)
+     *
+     * The value of the property should either be `true` or `false` if set.
+     *
+     * @since   0.5.0
+     */
+    public val PROPERTY_IMPLICIT_HOST_PLATFORM: String = "com.osmerion.lwjgl3.implicit-host-platform"
+
 }
