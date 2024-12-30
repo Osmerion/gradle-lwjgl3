@@ -1,32 +1,42 @@
 public abstract class com/osmerion/gradle/lwjgl3/Architecture {
+	public abstract fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/Architecture$ARM32 : com/osmerion/gradle/lwjgl3/Architecture {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$ARM32;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/Architecture$ARM64 : com/osmerion/gradle/lwjgl3/Architecture {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$ARM64;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/Architecture$PowerPC64LE : com/osmerion/gradle/lwjgl3/Architecture {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$PowerPC64LE;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/Architecture$RISCV64 : com/osmerion/gradle/lwjgl3/Architecture {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$RISCV64;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/Architecture$X86 : com/osmerion/gradle/lwjgl3/Architecture {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$X86;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/Architecture$X86_64 : com/osmerion/gradle/lwjgl3/Architecture {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/Architecture$X86_64;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/ArchitectureKt {
 	public static final fun Architecture (Ljava/util/function/Predicate;)Lcom/osmerion/gradle/lwjgl3/Architecture;
+}
+
+public abstract interface annotation class com/osmerion/gradle/lwjgl3/ExperimentalPlatformApi : java/lang/annotation/Annotation {
 }
 
 public final class com/osmerion/gradle/lwjgl3/Lwjgl {
@@ -148,22 +158,27 @@ public class com/osmerion/gradle/lwjgl3/NativePlatform {
 }
 
 public abstract class com/osmerion/gradle/lwjgl3/OperatingSystem {
+	public abstract fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/OperatingSystem$FreeBSD : com/osmerion/gradle/lwjgl3/OperatingSystem {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/OperatingSystem$FreeBSD;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/OperatingSystem$Linux : com/osmerion/gradle/lwjgl3/OperatingSystem {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/OperatingSystem$Linux;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/OperatingSystem$MacOS : com/osmerion/gradle/lwjgl3/OperatingSystem {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/OperatingSystem$MacOS;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/OperatingSystem$Windows : com/osmerion/gradle/lwjgl3/OperatingSystem {
 	public static final field INSTANCE Lcom/osmerion/gradle/lwjgl3/OperatingSystem$Windows;
+	public fun matches (Ljava/lang/String;)Z
 }
 
 public final class com/osmerion/gradle/lwjgl3/OperatingSystemKt {
