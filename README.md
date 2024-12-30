@@ -87,7 +87,7 @@ lwjgl3 {
 ### Platforms
 
 As LWJGL provides bindings to native libraries, it is also necessary to declare
-which native platforms should be included in a target. FunSeveral functions are
+which native platforms should be included in a target. Several functions are
 available for LWJGL targets and can be used to include a predefined platform.
 E.g.:
 
