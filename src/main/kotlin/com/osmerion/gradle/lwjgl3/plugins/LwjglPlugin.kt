@@ -76,21 +76,16 @@ public class LwjglPlugin : Plugin<Project> {
                 platforms.registerImplicitHostPlatform()
             }
 
-            nativesConfiguration.get().dependencies.addLater(provider {
-                var applicablePlatforms = platforms
-                    .filter { it.matcher.matchesCurrent }
-
-                if (applicablePlatforms.size > 1) {
-                    applicablePlatforms = applicablePlatforms.filterNot(NativePlatform::isImplicitHostPlatform)
-
-                    if (applicablePlatforms.size > 1) {
-                        throw IllegalStateException("Multiple native platforms are applicable: ${applicablePlatforms.joinToString { it.name }}")
+            platforms.all platform@{
+                nativesConfiguration.get().dependencies.addLater(provider {
+                    if (this@platform.matcher.matchesCurrent) {
+                        @Suppress("UnstableApiUsage")
+                        dependencyFactory.create(files(this@platform.configuration))
+                    } else {
+                        null
                     }
-                }
-
-                @Suppress("UnstableApiUsage")
-                applicablePlatforms.singleOrNull()?.let { dependencyFactory.create(files(it.configuration)) }
-            })
+                })
+            }
 
             platforms.configureEach platform@{
                 configurationImpl.configure {
