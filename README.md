@@ -105,6 +105,22 @@ The following predefined platforms are available:
  - `macosARM64`, `macosX64`
  - `windowsARM64`, `windowsX64`, `windowsX86`
 
+#### Implicit Host Platform
+
+To ease development and testing, by default, the plugin automatically registers
+an implicit platform for the build host. This platform can be identified using
+the `isImplicitHostPlatform` property. If the host is not a supported platform,
+no implicit platform is registered.
+
+The `isImplicitHostPlatform` property should be respected to avoid creating
+distributions (or similar) for the automatically added platform.
+
+> [!IMPORTANT]
+> The `isImplicitHostPlatform` property should be respected to avoid creating
+> distributions (or similar) for the automatically added platform. To disable
+> its creation, set the property `com.osmerion.lwjgl3.implicit-host-platform` to
+> `false`.
+
 #### Custom Platforms
 
 Additionally, custom platforms can be declared using the `platform` function.
