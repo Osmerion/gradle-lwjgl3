@@ -49,6 +49,7 @@ public fun OperatingSystem(matches: Predicate<String>): OperatingSystem =
  *
  * @since   0.1.0
  */
+@OptIn(ExperimentalPlatformApi::class)
 public sealed class OperatingSystem {
 
     internal abstract val artifactClassifierComponent: String
@@ -59,7 +60,17 @@ public sealed class OperatingSystem {
 
     }
 
-    internal abstract fun matches(osName: String): Boolean
+    /**
+     * Checks if the given operating system name matches this operating system.
+     *
+     * @param osName    the name of the operating system to match
+     *
+     * @return  `true` if the given operating system name matches this operating system,
+     *
+     * @since   0.5.0
+     */
+    @ExperimentalPlatformApi
+    public abstract fun matches(osName: String): Boolean
 
     /**
      * The FreeBSD operating system family.

@@ -49,6 +49,7 @@ public fun Architecture(matches: Predicate<String>): Architecture =
  *
  * @since   0.1.0
  */
+@OptIn(ExperimentalPlatformApi::class)
 public sealed class Architecture {
 
     internal abstract val artifactClassifierComponent: String?
@@ -59,7 +60,17 @@ public sealed class Architecture {
 
     }
 
-    internal abstract fun matches(arch: String): Boolean
+    /**
+     * Checks if the given `arch` matches this architecture.
+     *
+     * @param arch  the architecture to match
+     *
+     * @return  `true` if the given `arch` matches this architecture, or `false` otherwise
+     *
+     * @since   0.5.0
+     */
+    @ExperimentalPlatformApi
+    public abstract fun matches(arch: String): Boolean
 
     /**
      * The ARM32 architecture.
