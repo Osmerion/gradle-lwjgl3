@@ -20,7 +20,7 @@ A Gradle plugin to simplify working with [LWJGL 3](https://lwjgl.org).
 
 ```kotlin
 plugins {
-    id("com.osmerion.lwjgl3") version "0.4.0"
+    id("com.osmerion.lwjgl3") version "0.5.0"
 }
 ```
 
