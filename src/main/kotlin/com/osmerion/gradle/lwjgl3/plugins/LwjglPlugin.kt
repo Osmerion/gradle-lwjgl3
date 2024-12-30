@@ -58,7 +58,14 @@ public class LwjglPlugin : Plugin<Project> {
                 val groupName = this@target.group.get()
                 val version = this@target.version.get()
 
-                modules.get().map { lwjglModule ->
+                val modules = buildSet {
+                    val modules = modules.get()
+
+                    addAll(modules)
+                    if (modules.isNotEmpty()) add(Lwjgl.Core)
+                }
+
+                modules.map { lwjglModule ->
                     /*
                      * Kotlin does not guarantee that the string representation returned by
                      * CharSequence#toString() is equal to the CharSequence.
@@ -93,7 +100,14 @@ public class LwjglPlugin : Plugin<Project> {
                         val groupName = this@target.group.get()
                         val version = this@target.version.get()
 
-                        modules.get().map { lwjglModule ->
+                        val modules = buildSet {
+                            val modules = modules.get()
+
+                            addAll(modules)
+                            if (modules.isNotEmpty()) add(Lwjgl.Core)
+                        }
+
+                        modules.map { lwjglModule ->
                             /*
                              * Kotlin does not guarantee that the string representation returned by
                              * CharSequence#toString() is equal to the CharSequence.
