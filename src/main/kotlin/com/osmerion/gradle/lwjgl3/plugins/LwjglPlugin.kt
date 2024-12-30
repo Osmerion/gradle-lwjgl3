@@ -140,6 +140,7 @@ public class LwjglPlugin : Plugin<Project> {
         }
     }
 
+    @OptIn(ExperimentalPlatformApi::class)
     private fun NamedDomainObjectContainer<NativePlatform>.registerImplicitHostPlatform() {
         val osName = System.getProperty("os.name")
         val osArch = System.getProperty("os.arch")

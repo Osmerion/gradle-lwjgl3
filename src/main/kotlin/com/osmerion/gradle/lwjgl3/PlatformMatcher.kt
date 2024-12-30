@@ -67,6 +67,7 @@ public open class PlatformMatcher @Inject internal constructor(
      *
      * @since   0.1.0
      */
+    @OptIn(ExperimentalPlatformApi::class)
     public val matchesCurrent: Boolean by lazy {
         val osName = System.getProperty("os.name")
         val osArch = System.getProperty("os.arch")
