@@ -38,6 +38,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.logging.Logging
 import org.gradle.api.plugins.JavaPlugin
+import org.gradle.util.GradleVersion
 
 /**
  * The LWJGL Gradle Plugin.
@@ -51,6 +52,10 @@ public class LwjglPlugin : Plugin<Project> {
     }
 
     override fun apply(target: Project): Unit = applyTo(target) {
+        if (GradleVersion.current() < GradleVersion.version("9.0.0")) {
+            throw IllegalStateException("This plugin requires Gradle 9.0.0 or later")
+        }
+
         val lwjgl3 = extensions.create("lwjgl3", LwjglExtension::class.java)
 
         lwjgl3.targets.all target@{
