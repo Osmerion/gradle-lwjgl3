@@ -1,12 +1,12 @@
 name: Publish
 on:
   - workflow_dispatch
-
+permissions:
+  contents: read
 
 concurrency:
   group: "publish"
   cancel-in-progress: false
-
 
 jobs:
   build:
