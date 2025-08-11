@@ -170,19 +170,8 @@ tasks {
     }
 }
 
-val emptyJar = tasks.register<Jar>("emptyJar") {
-    destinationDirectory = layout.buildDirectory.dir("emptyJar")
-    archiveBaseName = "com.osmerion.lwjgl3.gradle.plugin"
-}
-
 publishing {
     publications.withType<MavenPublication>().configureEach {
-        if (name == "lwjglPluginMarkerMaven") {
-            artifact(emptyJar)
-            artifact(emptyJar) { classifier = "javadoc" }
-            artifact(emptyJar) { classifier = "sources" }
-        }
-
         pom {
             name = "LWJGL3 Gradle Plugin"
             description = "A Gradle plugin to simplify working with LWJGL 3."
