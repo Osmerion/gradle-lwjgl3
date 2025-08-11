@@ -51,8 +51,8 @@ jobs:
         shell: bash
         run: ./gradlew check --info -S --show-version -Ptoolchain.functionalTest.version=${{ matrix.jdk }}
 
-  build-artifact-bundles:
-    name: Build Artifact Bundles
+  build-artifact-bundle:
+    name: Build Artifact Bundle
     needs: check
     runs-on: ubuntu-latest
     steps:
@@ -82,7 +82,7 @@ jobs:
 
   central-upload:
     name: Upload to Central Portal
-    needs: build-artifact-bundles
+    needs: build-artifact-bundle
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact Bundle
