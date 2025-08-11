@@ -56,7 +56,6 @@ publishing {
         pom {
             name = project.name
             url = "https://github.com/Osmerion/gradle-lwjgl3"
-            packaging = "jar"
 
             licenses {
                 license {
