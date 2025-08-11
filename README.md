@@ -131,11 +131,11 @@ not been updated yet to include new predefined functions.
 lwjgl3 {
     targets.named("main") {
         platform(name = "FreeBSDX64") {
-            artifactClassifier.set("natives-freebsd")
+            artifactClassifier = "natives-freebsd"
 
             match {
-                os.set(OperatingSystem.FreeBSD)
-                arch.set(Architecture.X86_64)
+                os = OperatingSystem.FreeBSD
+                arch = Architecture.X86_64
             }
         }
     }
@@ -153,8 +153,8 @@ LWJGL artifacts.
 ```kotlin
 lwjgl3 {
     targets.named("main") {
-        group.set("org.lwjgl")
-        version.set("3.3.5")
+        group = "org.lwjgl"
+        version = "3.3.6"
     }
 }
 ```
