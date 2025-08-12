@@ -135,7 +135,7 @@ jobs:
         run: ./gradlew check publishPlugins --info -S --show-version
 
   central-release:
-    name: Release to Nexus
+    name: Release to Central Portal
     needs: [central-upload, gpp-release]
     runs-on: ubuntu-latest
     steps:
